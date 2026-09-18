@@ -1,0 +1,139 @@
+/*-- scss:defaults --*/
+
+// 薬理学講義（全15回）共通カラーパレット
+$body-bg: #ffffff;
+$body-color: #30343b;
+$link-color: #1769aa;
+$presentation-heading-color: #17365d;
+$presentation-heading-font: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+  "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+  "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
+$presentation-font-size-root: 38px;
+$presentation-line-height: 1.45;
+
+/*-- scss:rules --*/
+
+.reveal {
+  color: $body-color;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  color: $presentation-heading-color;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.reveal h2 {
+  margin-bottom: 0.75em;
+  padding-bottom: 0.22em;
+  border-bottom: 5px solid #2474b5;
+}
+
+.reveal strong,
+.reveal b,
+.reveal .emphasis {
+  color: #b42336;
+  font-weight: 700;
+}
+
+.reveal a {
+  color: $link-color;
+}
+
+.reveal ul,
+.reveal ol {
+  margin-left: 1.2em;
+}
+
+.reveal .slide-number {
+  color: #5e6875;
+  background: transparent;
+}
+
+// タイトルスライドも講義本文と同じく左揃えにする
+.reveal .title-slide {
+  text-align: left;
+}
+
+
+// 教材リンク：URLは data/links.yml で一元管理する
+.reveal a.ph-link {
+  color: inherit;
+  font-weight: 650;
+  text-decoration: none;
+  border-bottom: 2px dotted #2474b5;
+}
+
+.reveal a.ph-link:hover {
+  color: #1769aa;
+  border-bottom-style: solid;
+}
+
+.reveal a.ph-link-keyword::before,
+.reveal a.ph-link-drug-class::before,
+.reveal a.ph-link-drug::before {
+  content: "◫";
+  margin-right: 0.18em;
+  color: #2474b5;
+  font-size: 0.72em;
+  vertical-align: 0.08em;
+}
+
+.reveal a.ph-link::after {
+  content: "↗";
+  margin-left: 0.12em;
+  color: #2474b5;
+  font-size: 0.58em;
+  vertical-align: super;
+}
+
+.reveal .ph-link-planned {
+  border-bottom: 1px dotted #9aa4b2;
+  color: inherit;
+}
+
+.reveal .ph-link-missing {
+  outline: 2px dashed #b42336;
+  outline-offset: 0.12em;
+}
+
+.reveal a.ph-simulator {
+  display: inline-block;
+  margin-top: 0.45em;
+  padding: 0.28em 0.7em;
+  color: #ffffff;
+  background: #1769aa;
+  border: 2px solid #1769aa;
+  border-radius: 0.35em;
+  font-size: 0.78em;
+  font-weight: 700;
+}
+
+.reveal a.ph-simulator:hover {
+  color: #ffffff;
+  background: #0f4f83;
+  border-color: #0f4f83;
+}
+
+.reveal a.ph-simulator::before {
+  content: "▶";
+  margin-right: 0.35em;
+  font-size: 0.75em;
+}
+
+.reveal a.ph-simulator::after {
+  color: #ffffff;
+}

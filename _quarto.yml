@@ -1,0 +1,27 @@
+project:
+  type: default
+  output-dir: _site
+  render:
+    - index.qmd
+    - lectures/01-drug-action/01.qmd
+    - lectures/02-pharmacokinetics-safety/02.qmd
+    - lectures/03-circulation-fluid/03.qmd
+
+lang: ja
+
+metadata-files:
+  - data/links.yml
+
+filters:
+  - filters/ph-links.lua
+
+format:
+  revealjs:
+    theme:
+      - default
+      - theme.scss
+    width: 1280
+    height: 720
+    center: false
+    slide-number: true
+    transition: fade

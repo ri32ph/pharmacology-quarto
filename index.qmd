@@ -1,0 +1,49 @@
+---
+title: "看護薬理学"
+subtitle: "講義資料"
+format:
+  html:
+    toc: false
+    page-layout: full
+    css: lecture-index.css
+---
+
+::: {.course-intro}
+## 薬の作用から、患者の変化を考える
+
+事前学習・対面学習・振り返りを一つの講義資料として確認できます。
+:::
+
+::: {.lecture-grid}
+
+::: {.lecture-card}
+### 第1回　薬が効く仕組み
+
+作用点から患者の変化までをつなぐ
+
+[講義スライドを開く](lectures/01-drug-action/01.html){.lecture-button}
+:::
+
+::: {.lecture-card}
+### 第2回　薬物動態・副作用・安全な与薬
+
+薬の動きから効きすぎを予測する
+
+[講義スライドを開く](lectures/02-pharmacokinetics-safety/02.html){.lecture-button}
+:::
+
+::: {.lecture-card}
+### 第3回　血圧・心不全・利尿薬
+
+循環と体液を患者全体で評価する
+
+[講義スライドを開く](lectures/03-circulation-fluid/03.html){.lecture-button}
+:::
+
+:::
+
+::: {.related-site}
+### 関連教材
+
+[YakuriLab 辞書・Simulator](https://yakuri-lab.vercel.app/dictionary/){.lecture-button .secondary}
+:::
