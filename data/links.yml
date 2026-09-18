@@ -1,0 +1,44 @@
+# Quarto講義から公開Web教材へ解決するリンク台帳
+# キーは Notion / Web / Quarto で共有する Slug とする。
+# status: planned はリンク化せず、公開後に active へ変更する。
+ph-links:
+  keyword:
+    cardiac-output:
+      url: /dictionary/keywords/cardiac-output/
+      status: planned
+    half-life:
+      url: /dictionary/keywords/half-life/
+      status: planned
+    raa-system:
+      url: /dictionary/keywords/raa-system/
+      status: planned
+
+  drug-class:
+    calcium-channel-blockers:
+      url: /dictionary/drug-classes/calcium-channel-blockers/
+      status: planned
+    beta-blockers:
+      url: /dictionary/drug-classes/beta-blockers/
+      status: planned
+    loop-diuretics:
+      url: /dictionary/drug-classes/loop-diuretics/
+      status: planned
+
+  drug:
+    amlodipine:
+      url: /dictionary/drugs/amlodipine/
+      status: planned
+    bisoprolol:
+      url: /dictionary/drugs/bisoprolol/
+      status: planned
+    furosemide:
+      url: /dictionary/drugs/furosemide/
+      status: planned
+
+  simulator:
+    blood-pressure:
+      url: https://yakuri-lab.vercel.app/pharmacology_lab_28_blood_pressure.html
+      status: active
+    raas:
+      url: https://yakuri-lab.vercel.app/pharmacology_lab_29_raas.html
+      status: active
