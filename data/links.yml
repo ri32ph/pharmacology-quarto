@@ -4,8 +4,8 @@
 ph-links:
   keyword:
     cardiac-output:
-      url: /dictionary/keywords/cardiac-output/
-      status: planned
+      url: https://yakuri-lab.vercel.app/dictionary/keywords/cardiac-output/
+      status: active
     half-life:
       url: /dictionary/keywords/half-life/
       status: planned
@@ -15,8 +15,8 @@ ph-links:
 
   drug-class:
     calcium-channel-blockers:
-      url: /dictionary/drug-classes/calcium-channel-blockers/
-      status: planned
+      url: https://yakuri-lab.vercel.app/dictionary/drug-classes/calcium-channel-blockers/
+      status: active
     beta-blockers:
       url: /dictionary/drug-classes/beta-blockers/
       status: planned
@@ -26,8 +26,8 @@ ph-links:
 
   drug:
     amlodipine:
-      url: /dictionary/drugs/amlodipine/
-      status: planned
+      url: https://yakuri-lab.vercel.app/dictionary/drugs/amlodipine/
+      status: active
     bisoprolol:
       url: /dictionary/drugs/bisoprolol/
       status: planned
