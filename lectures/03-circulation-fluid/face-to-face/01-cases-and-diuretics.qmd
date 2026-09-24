@@ -103,9 +103,9 @@ Ca拮抗薬による浮腫は、Na・水貯留が主因ではありません。�
 :::
 ::: {.column width="52%"}
 ### 長期的な悪化を防ぐ
-- ARNI・ACE阻害薬・ARB
-- β遮断薬
-- MRA
+- ARNI・[ACE阻害薬]{.ph-link data-kind="drug-class" data-slug="ace-inhibitors"}・[ARB]{.ph-link data-kind="drug-class" data-slug="angiotensin-receptor-blockers"}
+- [β遮断薬]{.ph-link data-kind="drug-class" data-slug="beta-blockers"}
+- [MRA]{.ph-link data-kind="drug-class" data-slug="mineralocorticoid-receptor-antagonists"}
 - SGLT2阻害薬
 :::
 :::
@@ -129,7 +129,7 @@ HFrEFの長期治療では複数の薬効群が推奨されます。処方の変
 - 低Na・低K（MRAなどでは高K）
 
 ::: {.notes}
-55〜75分の利尿薬です。ループ利尿薬では脱水、低血圧、低Na、低K、腎機能悪化などを確認します。
+55〜75分の利尿薬です。[ループ利尿薬]{.ph-link data-kind="drug-class" data-slug="loop-diuretics"}では脱水、低血圧、低Na、低K、腎機能悪化などを確認します。
 :::
 
 ---

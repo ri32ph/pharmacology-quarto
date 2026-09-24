@@ -18,11 +18,23 @@ ph-links:
       url: https://yakuri-lab.vercel.app/dictionary/drug-classes/calcium-channel-blockers/
       status: active
     beta-blockers:
-      url: /dictionary/drug-classes/beta-blockers/
-      status: planned
+      url: https://yakuri-lab.vercel.app/dictionary/drug-classes/beta-blockers/
+      status: active
     loop-diuretics:
-      url: /dictionary/drug-classes/loop-diuretics/
-      status: planned
+      url: https://yakuri-lab.vercel.app/dictionary/drug-classes/loop-diuretics/
+      status: active
+    ace-inhibitors:
+      url: https://yakuri-lab.vercel.app/dictionary/drug-classes/ace-inhibitors/
+      status: active
+    angiotensin-receptor-blockers:
+      url: https://yakuri-lab.vercel.app/dictionary/drug-classes/angiotensin-receptor-blockers/
+      status: active
+    mineralocorticoid-receptor-antagonists:
+      url: https://yakuri-lab.vercel.app/dictionary/drug-classes/mineralocorticoid-receptor-antagonists/
+      status: active
+    thiazide-diuretics:
+      url: https://yakuri-lab.vercel.app/dictionary/drug-classes/thiazide-diuretics/
+      status: active
 
   drug:
     amlodipine:

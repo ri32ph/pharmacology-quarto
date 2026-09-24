@@ -100,9 +100,9 @@ RAAはレニン・アンジオテンシン・アルドステロン系の略で�
 | 治療の方向 | 変化 | 代表的な薬効群 |
 |---|---|---|
 | 血管を広げる | 末梢血管抵抗↓ | [Ca拮抗薬]{.ph-link data-kind="drug-class" data-slug="calcium-channel-blockers"} |
-| RAA系を抑える | 血管収縮・体液貯留↓ | ACE阻害薬・ARB |
+| RAA系を抑える | 血管収縮・体液貯留↓ | [ACE阻害薬]{.ph-link data-kind="drug-class" data-slug="ace-inhibitors"}・[ARB]{.ph-link data-kind="drug-class" data-slug="angiotensin-receptor-blockers"} |
 | Na・水を減らす | 循環血液量↓ | 利尿薬 |
-| 心臓の働きを抑える | 心拍出量↓ | β遮断薬 |
+| 心臓の働きを抑える | 心拍出量↓ | [β遮断薬]{.ph-link data-kind="drug-class" data-slug="beta-blockers"} |
 
 ::: {.notes}
 同じ「降圧」でも作用する場所が異なります。作用点が分かると、起立性低血圧、電解質異常、腎機能変化などの観察へつながります。
@@ -140,9 +140,9 @@ RAAはレニン・アンジオテンシン・アルドステロン系の略で�
 | 治療の目的 | 主な薬効群 |
 |---|---|
 | 今あるうっ血を改善する | 利尿薬 |
-| RAA系を抑える | ARNI・ACE阻害薬・ARB |
-| 交感神経の過剰を抑える | β遮断薬 |
-| アルドステロン作用を抑える | MRA |
+| RAA系を抑える | ARNI・[ACE阻害薬]{.ph-link data-kind="drug-class" data-slug="ace-inhibitors"}・[ARB]{.ph-link data-kind="drug-class" data-slug="angiotensin-receptor-blockers"} |
+| 交感神経の過剰を抑える | [β遮断薬]{.ph-link data-kind="drug-class" data-slug="beta-blockers"} |
+| アルドステロン作用を抑える | [MRA]{.ph-link data-kind="drug-class" data-slug="mineralocorticoid-receptor-antagonists"} |
 | 心不全イベントを減らす | SGLT2阻害薬 |
 
 ::: {.notes}
@@ -155,9 +155,9 @@ HFrEFでは複数の薬効群を組み合わせます。利尿薬による症状
 
 | 主な作用部位 | 薬効群 | Kへの主な影響 |
 |---|---|---|
-| ヘンレ係蹄上行脚 | ループ利尿薬 | 低Kに注意 |
-| 遠位尿細管 | サイアザイド系 | 低Na・低Kに注意 |
-| 遠位尿細管〜集合管 | K保持性利尿薬・MRA | 高Kに注意 |
+| ヘンレ係蹄上行脚 | [ループ利尿薬]{.ph-link data-kind="drug-class" data-slug="loop-diuretics"} | 低Kに注意 |
+| 遠位尿細管 | [サイアザイド系利尿薬]{.ph-link data-kind="drug-class" data-slug="thiazide-diuretics"} | 低Na・低Kに注意 |
+| 遠位尿細管〜集合管 | K保持性利尿薬・[MRA]{.ph-link data-kind="drug-class" data-slug="mineralocorticoid-receptor-antagonists"} | 高Kに注意 |
 
 Na再吸収↓ → Na・水排泄↑ → 循環血液量↓ → **血圧低下・うっ血改善**
 
