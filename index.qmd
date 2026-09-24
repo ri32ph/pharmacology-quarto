@@ -11,56 +11,80 @@ format:
 ::: {.course-intro}
 ## 薬の作用から、患者の変化を考える
 
-学習段階を選び、必要な資料から始められます。
+講義または小単元の行から、学習段階を選んでください。
 :::
 
-::: {.lecture-grid}
+```{=html}
+<div class="course-table">
+  <div class="grid-header" aria-hidden="true">
+    <span>講義・小単元</span>
+    <span>事前学習</span>
+    <span>対面授業</span>
+    <span>復習</span>
+    <span>全体版</span>
+  </div>
 
-::: {.lecture-card}
-### 第1回　薬が効く仕組み
+  <section class="lecture-row">
+    <div class="lecture-info">
+      <strong>第1回　薬が効く仕組み</strong>
+      <span>作用点から患者の変化までをつなぐ</span>
+    </div>
+    <a class="phase-cell pre" href="lectures/01-drug-action/pre-class.html">事前学習</a>
+    <a class="phase-cell classroom" href="lectures/01-drug-action/face-to-face.html">対面授業</a>
+    <a class="phase-cell review" href="lectures/01-drug-action/reflection.html">復習</a>
+    <a class="phase-cell full" href="lectures/01-drug-action/01.html">全体版を開く</a>
+  </section>
 
-作用点から患者の変化までをつなぐ
+  <section class="lecture-row">
+    <div class="lecture-info">
+      <strong>第2回　薬物動態・副作用・安全な与薬</strong>
+      <span>薬の動きから効きすぎを予測する</span>
+    </div>
+    <a class="phase-cell pre" href="lectures/02-pharmacokinetics-safety/pre-class.html">事前学習</a>
+    <a class="phase-cell classroom" href="lectures/02-pharmacokinetics-safety/face-to-face.html">対面授業</a>
+    <a class="phase-cell review" href="lectures/02-pharmacokinetics-safety/reflection.html">復習</a>
+    <a class="phase-cell full" href="lectures/02-pharmacokinetics-safety/02.html">全体版を開く</a>
+  </section>
 
-::: {.phase-links}
-[事前学習](lectures/01-drug-action/pre-class.html){.phase-button .pre}
-[対面授業](lectures/01-drug-action/face-to-face.html){.phase-button .classroom}
-[復習](lectures/01-drug-action/reflection.html){.phase-button .review}
-:::
+  <div class="lecture-group-title">
+    <strong>第3回　血圧・心不全・利尿薬</strong>
+    <span>循環と体液を患者全体で評価する</span>
+  </div>
 
-[全体版を開く](lectures/01-drug-action/01.html){.full-deck-link}
-:::
+  <section class="lecture-row unit-row">
+    <div class="lecture-info">
+      <strong>03-01　高血圧・降圧薬</strong>
+      <span>血圧と症状から降圧効果を評価する</span>
+    </div>
+    <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/血圧は心拍出量と血管抵抗で決まる">事前学習</a>
+    <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/症例a血圧は下がったがふらつきが出た">対面授業</a>
+    <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html">復習</a>
+    <a class="phase-cell full" href="lectures/03-circulation-fluid/03.html#/血圧は心拍出量と血管抵抗で決まる">全体版を開く</a>
+  </section>
 
-::: {.lecture-card}
-### 第2回　薬物動態・副作用・安全な与薬
+  <section class="lecture-row unit-row">
+    <div class="lecture-info">
+      <strong>03-02　心不全治療薬</strong>
+      <span>うっ血と低灌流を分けて考える</span>
+    </div>
+    <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/心不全ではうっ血と低灌流が同時に起こり得る">事前学習</a>
+    <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/症例b3日で体重が2.3-kg増えた">対面授業</a>
+    <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html">復習</a>
+    <a class="phase-cell full" href="lectures/03-circulation-fluid/03.html#/心不全ではうっ血と低灌流が同時に起こり得る">全体版を開く</a>
+  </section>
 
-薬の動きから効きすぎを予測する
-
-::: {.phase-links}
-[事前学習](lectures/02-pharmacokinetics-safety/pre-class.html){.phase-button .pre}
-[対面授業](lectures/02-pharmacokinetics-safety/face-to-face.html){.phase-button .classroom}
-[復習](lectures/02-pharmacokinetics-safety/reflection.html){.phase-button .review}
-:::
-
-[全体版を開く](lectures/02-pharmacokinetics-safety/02.html){.full-deck-link}
-:::
-
-::: {.lecture-card}
-### 第3回　血圧・心不全・利尿薬
-
-循環と体液を患者全体で評価する
-
-<span class="unit-label">03-01〜03-03</span>
-
-::: {.phase-links}
-[事前学習](lectures/03-circulation-fluid/pre-class.html){.phase-button .pre}
-[対面授業](lectures/03-circulation-fluid/face-to-face.html){.phase-button .classroom}
-[復習](lectures/03-circulation-fluid/reflection.html){.phase-button .review}
-:::
-
-[全体版を開く](lectures/03-circulation-fluid/03.html){.full-deck-link}
-:::
-
-:::
+  <section class="lecture-row unit-row">
+    <div class="lecture-info">
+      <strong>03-03　利尿薬・体液管理</strong>
+      <span>効果と利尿過剰を観察から見分ける</span>
+    </div>
+    <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/利尿薬はna再吸収を抑えて体液量を減らす">事前学習</a>
+    <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/利尿が強すぎると循環血液量が不足する">対面授業</a>
+    <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html#/exit-ticket利尿後のめまいを説明する">復習</a>
+    <a class="phase-cell full" href="lectures/03-circulation-fluid/03.html#/利尿薬はna再吸収を抑えて体液量を減らす">全体版を開く</a>
+  </section>
+</div>
+```
 
 ::: {.related-site}
 ### 関連教材
