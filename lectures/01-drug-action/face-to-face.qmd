@@ -1,0 +1,9 @@
+---
+title: "第1回｜対面授業"
+subtitle: "薬が効く仕組み"
+format:
+  revealjs:
+    embed-resources: true
+---
+
+{{< include face-to-face/01-active-learning.qmd >}}

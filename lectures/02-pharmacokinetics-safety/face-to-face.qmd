@@ -1,0 +1,9 @@
+---
+title: "第2回｜対面授業"
+subtitle: "薬物動態・副作用・安全な与薬"
+format:
+  revealjs:
+    embed-resources: true
+---
+
+{{< include face-to-face/01-clinical-application.qmd >}}

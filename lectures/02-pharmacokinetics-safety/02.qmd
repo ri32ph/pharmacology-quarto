@@ -1,0 +1,10 @@
+---
+title: "第2回　薬物動態・副作用・安全な与薬"
+subtitle: "薬の動きから効きすぎを予測する"
+---
+
+{{< include pre-class/01-adme-terms.qmd >}}
+
+{{< include face-to-face/01-clinical-application.qmd >}}
+
+{{< include reflection/01-reflection.qmd >}}

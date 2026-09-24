@@ -1,0 +1,10 @@
+---
+title: "第1回　薬が効く仕組み"
+subtitle: "作用点から患者の変化までをつなぐ"
+---
+
+{{< include pre-class/01-foundations.qmd >}}
+
+{{< include face-to-face/01-active-learning.qmd >}}
+
+{{< include reflection/01-reflection.qmd >}}

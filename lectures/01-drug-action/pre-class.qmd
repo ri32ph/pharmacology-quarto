@@ -1,0 +1,9 @@
+---
+title: "第1回｜事前学習"
+subtitle: "薬が効く仕組み"
+format:
+  revealjs:
+    embed-resources: true
+---
+
+{{< include pre-class/01-foundations.qmd >}}

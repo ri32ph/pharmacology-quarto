@@ -14,8 +14,19 @@ main.content { max-width: 1080px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
 .lecture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
 .lecture-card { display: flex; flex-direction: column; padding: 1.4rem; background: #fff; border-top: 5px solid var(--course-blue); box-shadow: 0 4px 18px rgba(23, 54, 93, .08); }
 .lecture-card h3 { margin-top: 0; color: var(--course-navy); font-size: 1.18rem; }
-.lecture-card p:last-child { margin-top: auto; padding-top: 1rem; }
+.lecture-card > p:nth-of-type(1) { min-height: 3rem; }
 .lecture-button { display: inline-block; padding: .7rem 1rem; color: #fff !important; background: var(--course-blue); text-decoration: none; font-weight: 700; }
 .lecture-button:hover, .lecture-button.secondary { background: var(--course-navy); }
+.phase-links { display: grid; gap: .6rem; margin-top: auto; padding-top: 1rem; }
+.phase-links p { display: grid; gap: .6rem; margin: 0; }
+.phase-button { display: block; padding: .75rem 1rem; border-radius: .3rem; color: #fff !important; text-decoration: none; font-weight: 700; text-align: center; transition: transform .15s ease, filter .15s ease; }
+.phase-button:hover { transform: translateY(-1px); filter: brightness(.94); }
+.phase-button.pre { background: #2878b5; }
+.phase-button.classroom { background: #17365d; }
+.phase-button.review { background: #62748a; }
+.full-deck-link { display: inline-block; margin-top: .85rem; color: var(--course-navy) !important; font-size: .9rem; font-weight: 700; }
+.unit-label { display: inline-block; width: fit-content; margin-top: .25rem; padding: .18rem .55rem; color: var(--course-navy); background: var(--course-pale-blue); border-radius: 999px; font-size: .8rem; font-weight: 700; }
 .related-site { margin-top: 2.5rem; padding: 1.5rem; background: var(--course-pale-blue); }
 .related-site h3 { margin-top: 0; color: var(--course-navy); }
+@media (min-width: 720px) and (max-width: 980px) { .lecture-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .lecture-grid { grid-template-columns: 1fr; } .quarto-title-block { padding-top: 2rem; padding-bottom: 2rem; } }

@@ -11,7 +11,7 @@ format:
 ::: {.course-intro}
 ## 薬の作用から、患者の変化を考える
 
-事前学習・対面学習・振り返りを一つの講義資料として確認できます。
+学習段階を選び、必要な資料から始められます。
 :::
 
 ::: {.lecture-grid}
@@ -21,7 +21,13 @@ format:
 
 作用点から患者の変化までをつなぐ
 
-[講義スライドを開く](lectures/01-drug-action/01.html){.lecture-button}
+::: {.phase-links}
+[事前学習](lectures/01-drug-action/pre-class.html){.phase-button .pre}
+[対面授業](lectures/01-drug-action/face-to-face.html){.phase-button .classroom}
+[復習](lectures/01-drug-action/reflection.html){.phase-button .review}
+:::
+
+[全体版を開く](lectures/01-drug-action/01.html){.full-deck-link}
 :::
 
 ::: {.lecture-card}
@@ -29,7 +35,13 @@ format:
 
 薬の動きから効きすぎを予測する
 
-[講義スライドを開く](lectures/02-pharmacokinetics-safety/02.html){.lecture-button}
+::: {.phase-links}
+[事前学習](lectures/02-pharmacokinetics-safety/pre-class.html){.phase-button .pre}
+[対面授業](lectures/02-pharmacokinetics-safety/face-to-face.html){.phase-button .classroom}
+[復習](lectures/02-pharmacokinetics-safety/reflection.html){.phase-button .review}
+:::
+
+[全体版を開く](lectures/02-pharmacokinetics-safety/02.html){.full-deck-link}
 :::
 
 ::: {.lecture-card}
@@ -37,7 +49,15 @@ format:
 
 循環と体液を患者全体で評価する
 
-[講義スライドを開く](lectures/03-circulation-fluid/03.html){.lecture-button}
+<span class="unit-label">03-01〜03-03</span>
+
+::: {.phase-links}
+[事前学習](lectures/03-circulation-fluid/pre-class.html){.phase-button .pre}
+[対面授業](lectures/03-circulation-fluid/face-to-face.html){.phase-button .classroom}
+[復習](lectures/03-circulation-fluid/reflection.html){.phase-button .review}
+:::
+
+[全体版を開く](lectures/03-circulation-fluid/03.html){.full-deck-link}
 :::
 
 :::

@@ -1,0 +1,9 @@
+---
+title: "第3回｜事前学習"
+subtitle: "血圧・心不全・利尿薬"
+format:
+  revealjs:
+    embed-resources: true
+---
+
+{{< include pre-class/01-circulation-basics.qmd >}}

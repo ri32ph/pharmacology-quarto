@@ -6,6 +6,15 @@ project:
     - lectures/01-drug-action/01.qmd
     - lectures/02-pharmacokinetics-safety/02.qmd
     - lectures/03-circulation-fluid/03.qmd
+    - lectures/01-drug-action/pre-class.qmd
+    - lectures/01-drug-action/face-to-face.qmd
+    - lectures/01-drug-action/reflection.qmd
+    - lectures/02-pharmacokinetics-safety/pre-class.qmd
+    - lectures/02-pharmacokinetics-safety/face-to-face.qmd
+    - lectures/02-pharmacokinetics-safety/reflection.qmd
+    - lectures/03-circulation-fluid/pre-class.qmd
+    - lectures/03-circulation-fluid/face-to-face.qmd
+    - lectures/03-circulation-fluid/reflection.qmd
 
 lang: ja
 

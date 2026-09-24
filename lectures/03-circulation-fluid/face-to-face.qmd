@@ -1,0 +1,9 @@
+---
+title: "第3回｜対面授業"
+subtitle: "血圧・心不全・利尿薬"
+format:
+  revealjs:
+    embed-resources: true
+---
+
+{{< include face-to-face/01-cases-and-diuretics.qmd >}}
