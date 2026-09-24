@@ -22,6 +22,7 @@ format:
     <span>対面授業</span>
     <span>復習</span>
     <span>全体版</span>
+    <span>関連薬効群</span>
   </div>
 
   <section class="lecture-row">
@@ -33,6 +34,7 @@ format:
     <a class="phase-cell classroom" href="lectures/01-drug-action/face-to-face.html">対面授業</a>
     <a class="phase-cell review" href="lectures/01-drug-action/reflection.html">復習</a>
     <a class="phase-cell full" href="lectures/01-drug-action/01.html">全体版を開く</a>
+    <div class="drug-class-cell"><span class="coming-soon">準備中</span></div>
   </section>
 
   <section class="lecture-row">
@@ -44,6 +46,7 @@ format:
     <a class="phase-cell classroom" href="lectures/02-pharmacokinetics-safety/face-to-face.html">対面授業</a>
     <a class="phase-cell review" href="lectures/02-pharmacokinetics-safety/reflection.html">復習</a>
     <a class="phase-cell full" href="lectures/02-pharmacokinetics-safety/02.html">全体版を開く</a>
+    <div class="drug-class-cell"><span class="coming-soon">準備中</span></div>
   </section>
 
   <div class="lecture-group-title">
@@ -60,6 +63,12 @@ format:
     <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/症例a血圧は下がったがふらつきが出た">対面授業</a>
     <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html">復習</a>
     <a class="phase-cell full" href="lectures/03-circulation-fluid/03.html#/血圧は心拍出量と血管抵抗で決まる">全体版を開く</a>
+    <div class="drug-class-cell">
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/calcium-channel-blockers/" target="_blank" rel="noopener">Ca拮抗薬</a>
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/ace-inhibitors/" target="_blank" rel="noopener">ACE阻害薬</a>
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/angiotensin-receptor-blockers/" target="_blank" rel="noopener">ARB</a>
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/beta-blockers/" target="_blank" rel="noopener">β遮断薬</a>
+    </div>
   </section>
 
   <section class="lecture-row unit-row">
@@ -71,6 +80,13 @@ format:
     <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/症例b3日で体重が2.3-kg増えた">対面授業</a>
     <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html">復習</a>
     <a class="phase-cell full" href="lectures/03-circulation-fluid/03.html#/心不全ではうっ血と低灌流が同時に起こり得る">全体版を開く</a>
+    <div class="drug-class-cell">
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/ace-inhibitors/" target="_blank" rel="noopener">ACE阻害薬</a>
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/angiotensin-receptor-blockers/" target="_blank" rel="noopener">ARB</a>
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/beta-blockers/" target="_blank" rel="noopener">β遮断薬</a>
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/mineralocorticoid-receptor-antagonists/" target="_blank" rel="noopener">MRA</a>
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/loop-diuretics/" target="_blank" rel="noopener">ループ利尿薬</a>
+    </div>
   </section>
 
   <section class="lecture-row unit-row">
@@ -82,6 +98,11 @@ format:
     <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/利尿が強すぎると循環血液量が不足する">対面授業</a>
     <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html#/exit-ticket利尿後のめまいを説明する">復習</a>
     <a class="phase-cell full" href="lectures/03-circulation-fluid/03.html#/利尿薬はna再吸収を抑えて体液量を減らす">全体版を開く</a>
+    <div class="drug-class-cell">
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/loop-diuretics/" target="_blank" rel="noopener">ループ利尿薬</a>
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/thiazide-diuretics/" target="_blank" rel="noopener">サイアザイド系</a>
+      <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/mineralocorticoid-receptor-antagonists/" target="_blank" rel="noopener">MRA</a>
+    </div>
   </section>
 </div>
 ```
