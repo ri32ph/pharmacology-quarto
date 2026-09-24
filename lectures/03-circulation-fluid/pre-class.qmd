@@ -1,5 +1,5 @@
 ---
-title: "第3回｜事前学習"
+title: "第3回｜基礎理解"
 subtitle: "血圧・心不全・利尿薬"
 format:
   revealjs:

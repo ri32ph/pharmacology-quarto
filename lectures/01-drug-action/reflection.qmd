@@ -1,5 +1,5 @@
 ---
-title: "第1回｜復習"
+title: "第1回｜統合・定着"
 subtitle: "薬が効く仕組み"
 format:
   revealjs:

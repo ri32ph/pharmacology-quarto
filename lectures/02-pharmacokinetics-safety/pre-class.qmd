@@ -1,5 +1,5 @@
 ---
-title: "第2回｜事前学習"
+title: "第2回｜基礎理解"
 subtitle: "薬物動態・副作用・安全な与薬"
 format:
   revealjs:

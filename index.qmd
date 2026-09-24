@@ -18,9 +18,9 @@ format:
 <div class="course-table">
   <div class="grid-header" aria-hidden="true">
     <span>講義・小単元</span>
-    <span>事前学習</span>
-    <span>対面授業</span>
-    <span>復習</span>
+    <span>基礎理解</span>
+    <span>臨床判断</span>
+    <span>統合・定着</span>
     <span>全体版</span>
     <span>関連薬効群</span>
   </div>
@@ -30,9 +30,9 @@ format:
       <strong>第1回　薬が効く仕組み</strong>
       <span>作用点から患者の変化までをつなぐ</span>
     </div>
-    <a class="phase-cell pre" href="lectures/01-drug-action/pre-class.html">事前学習</a>
-    <a class="phase-cell classroom" href="lectures/01-drug-action/face-to-face.html">対面授業</a>
-    <a class="phase-cell review" href="lectures/01-drug-action/reflection.html">復習</a>
+    <a class="phase-cell pre" href="lectures/01-drug-action/pre-class.html">基礎理解</a>
+    <a class="phase-cell classroom" href="lectures/01-drug-action/face-to-face.html">臨床判断</a>
+    <a class="phase-cell review" href="lectures/01-drug-action/reflection.html">統合・定着</a>
     <a class="phase-cell full" href="lectures/01-drug-action/01.html">全体版を開く</a>
     <div class="drug-class-cell"><span class="coming-soon">準備中</span></div>
   </section>
@@ -42,9 +42,9 @@ format:
       <strong>第2回　薬物動態・副作用・安全な与薬</strong>
       <span>薬の動きから効きすぎを予測する</span>
     </div>
-    <a class="phase-cell pre" href="lectures/02-pharmacokinetics-safety/pre-class.html">事前学習</a>
-    <a class="phase-cell classroom" href="lectures/02-pharmacokinetics-safety/face-to-face.html">対面授業</a>
-    <a class="phase-cell review" href="lectures/02-pharmacokinetics-safety/reflection.html">復習</a>
+    <a class="phase-cell pre" href="lectures/02-pharmacokinetics-safety/pre-class.html">基礎理解</a>
+    <a class="phase-cell classroom" href="lectures/02-pharmacokinetics-safety/face-to-face.html">臨床判断</a>
+    <a class="phase-cell review" href="lectures/02-pharmacokinetics-safety/reflection.html">統合・定着</a>
     <a class="phase-cell full" href="lectures/02-pharmacokinetics-safety/02.html">全体版を開く</a>
     <div class="drug-class-cell"><span class="coming-soon">準備中</span></div>
   </section>
@@ -59,9 +59,9 @@ format:
       <strong>03-01　高血圧・降圧薬</strong>
       <span>血圧と症状から降圧効果を評価する</span>
     </div>
-    <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/血圧は心拍出量と血管抵抗で決まる">事前学習</a>
-    <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/症例a血圧は下がったがふらつきが出た">対面授業</a>
-    <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html">復習</a>
+    <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/血圧は心拍出量と血管抵抗で決まる">基礎理解</a>
+    <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/症例a血圧は下がったがふらつきが出た">臨床判断</a>
+    <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html">統合・定着</a>
     <a class="phase-cell full" href="lectures/03-circulation-fluid/03.html#/血圧は心拍出量と血管抵抗で決まる">全体版を開く</a>
     <div class="drug-class-cell">
       <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/calcium-channel-blockers/" target="_blank" rel="noopener">Ca拮抗薬</a>
@@ -76,9 +76,9 @@ format:
       <strong>03-02　心不全治療薬</strong>
       <span>うっ血と低灌流を分けて考える</span>
     </div>
-    <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/心不全ではうっ血と低灌流が同時に起こり得る">事前学習</a>
-    <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/症例b3日で体重が2.3-kg増えた">対面授業</a>
-    <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html">復習</a>
+    <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/心不全ではうっ血と低灌流が同時に起こり得る">基礎理解</a>
+    <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/症例b3日で体重が2.3-kg増えた">臨床判断</a>
+    <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html">統合・定着</a>
     <a class="phase-cell full" href="lectures/03-circulation-fluid/03.html#/心不全ではうっ血と低灌流が同時に起こり得る">全体版を開く</a>
     <div class="drug-class-cell">
       <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/ace-inhibitors/" target="_blank" rel="noopener">ACE阻害薬</a>
@@ -94,9 +94,9 @@ format:
       <strong>03-03　利尿薬・体液管理</strong>
       <span>効果と利尿過剰を観察から見分ける</span>
     </div>
-    <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/利尿薬はna再吸収を抑えて体液量を減らす">事前学習</a>
-    <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/利尿が強すぎると循環血液量が不足する">対面授業</a>
-    <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html#/exit-ticket利尿後のめまいを説明する">復習</a>
+    <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/利尿薬はna再吸収を抑えて体液量を減らす">基礎理解</a>
+    <a class="phase-cell classroom" href="lectures/03-circulation-fluid/face-to-face.html#/利尿が強すぎると循環血液量が不足する">臨床判断</a>
+    <a class="phase-cell review" href="lectures/03-circulation-fluid/reflection.html#/exit-ticket利尿後のめまいを説明する">統合・定着</a>
     <a class="phase-cell full" href="lectures/03-circulation-fluid/03.html#/利尿薬はna再吸収を抑えて体液量を減らす">全体版を開く</a>
     <div class="drug-class-cell">
       <a href="https://yakuri-lab.vercel.app/dictionary/drug-classes/loop-diuretics/" target="_blank" rel="noopener">ループ利尿薬</a>

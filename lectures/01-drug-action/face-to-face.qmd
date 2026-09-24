@@ -1,5 +1,5 @@
 ---
-title: "第1回｜対面授業"
+title: "第1回｜臨床判断"
 subtitle: "薬が効く仕組み"
 format:
   revealjs:
