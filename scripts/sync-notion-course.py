@@ -344,7 +344,10 @@ def generate(token: str) -> dict[str, str]:
         for material_name, page_id, blocks in sorted(pages):
             unit = normalize_unit(material_name)
             lines.extend([f"## {unit}", "", f"<!-- notion-page-id: {page_id} -->", ""])
-            lines.extend(visual_model_slides(unit, phase, blocks, token))
+            model_slides = visual_model_slides(unit, phase, blocks, token)
+            lines.extend(model_slides)
+            if model_slides:
+                lines.extend([f"## {unit}｜中心メッセージ", ""])
             lines.extend(blocks_to_markdown(blocks, token, unit))
         generated[phase] = "\n".join(lines).rstrip() + "\n"
     return generated
