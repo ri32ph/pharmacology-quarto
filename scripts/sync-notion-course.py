@@ -196,6 +196,7 @@ def visual_model_slides(unit: str, phase: str, blocks: list[dict], token: str) -
         return [
             "## 血圧を決める仕組み {.model-slide .concept-slide}",
             "",
+            "```{=html}",
             '<div class="bp-model" role="img" aria-label="血圧は心拍出量と末梢血管抵抗で決まる">',
             '  <div class="bp-equation">',
             '    <div class="bp-node bp-main"><span>血圧</span><small>組織へ血液を届ける力</small></div>',
@@ -211,6 +212,7 @@ def visual_model_slides(unit: str, phase: str, blocks: list[dict], token: str) -
             '  </div>',
             '  <p class="model-takeaway">値だけでなく、<strong>どこが変わって血圧が下がったか</strong>を考える</p>',
             '</div>',
+            "```",
             "",
         ]
 
@@ -225,6 +227,7 @@ def visual_model_slides(unit: str, phase: str, blocks: list[dict], token: str) -
         return [
             "## 症例から降圧効果を判断する {.model-slide .case-slide}",
             "",
+            "```{=html}",
             '<div class="case-model">',
             '  <div class="patient-card">',
             '    <div class="patient-card-label">CASE 03-01</div>',
@@ -234,6 +237,7 @@ def visual_model_slides(unit: str, phase: str, blocks: list[dict], token: str) -
             f'  <div class="judgement-grid">{cards}</div>',
             f'  <div class="check-strip"><b>追加確認</b><span>{html.escape(checks)}</span></div>',
             '</div>',
+            "```",
             "",
         ]
 
@@ -252,11 +256,13 @@ def visual_model_slides(unit: str, phase: str, blocks: list[dict], token: str) -
         return [
             "## 降圧薬を作用と観察で比較する {.model-slide .compare-slide}",
             "",
+            "```{=html}",
             '<div class="drug-compare" role="table" aria-label="降圧薬の比較">',
             f'  <div class="drug-compare-row header">{header_cells}</div>',
             f'  {body_rows}',
             '</div>',
             '<p class="model-takeaway">薬効群の暗記ではなく、<strong>作用 → 起こり得る変化 → 観察</strong>でつなぐ</p>',
+            "```",
             "",
         ]
 
