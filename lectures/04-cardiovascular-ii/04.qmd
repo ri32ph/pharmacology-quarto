@@ -1,0 +1,10 @@
+---
+title: "第4回　循環器②"
+subtitle: "虚血・不整脈・血栓・ショックを薬理作用から考える"
+---
+
+{{< include pre-class/notion-sync-04.qmd >}}
+
+{{< include face-to-face/notion-sync-04.qmd >}}
+
+{{< include reflection/notion-sync-04.qmd >}}

@@ -6,4 +6,4 @@ format:
     embed-resources: true
 ---
 
-{{< include face-to-face/01-cases-and-diuretics.qmd >}}
+{{< include face-to-face/notion-sync-03.qmd >}}

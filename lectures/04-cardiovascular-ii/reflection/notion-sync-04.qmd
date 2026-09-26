@@ -1,0 +1,364 @@
+<!-- GENERATED FROM NOTION SNAPSHOT 04. DO NOT EDIT DIRECTLY. -->
+
+## Take-home message {.notion-slide .slide-normal .template-none}
+
+::: {.slide-message}
+虚血は酸素需給の不均衡で捉え、症状改善・血栓予防・再発予防を分けて評価します。
+:::
+
+::: {.callout-note}
+**Take-home message**
+1. 虚血は心筋の酸素供給と需要の不均衡で起こる
+2. 症状改善薬と再発予防薬を区別する
+3. 胸痛の緊急性と循環動態を同時に評価する
+:::
+
+---
+
+## 虚血性心疾患治療薬を作用と観察で比較する {.notion-slide .slide-comparison .template-drug-class-comparison}
+
+::: {.slide-message}
+薬効群ごとに目的・作用と観察項目を対にして覚えます。
+:::
+
+## まとめ
+<table header-row="true">
+<tr>
+<td>薬効群</td>
+<td>主な目的</td>
+<td>主な注意・観察</td>
+</tr>
+<tr>
+<td>硝酸薬</td>
+<td>胸痛改善、前負荷低下</td>
+<td>血圧、頭痛、ふらつき、併用薬</td>
+</tr>
+<tr>
+<td>β遮断薬</td>
+<td>酸素需要低下</td>
+<td>脈拍、血圧、徐脈</td>
+</tr>
+<tr>
+<td>抗血小板薬</td>
+<td>血栓予防</td>
+<td>出血</td>
+</tr>
+<tr>
+<td>スタチン</td>
+<td>再発予防</td>
+<td>筋症状、肝機能</td>
+</tr>
+</table>
+
+---
+
+## ミニ症例 {.notion-slide .slide-question .template-none}
+
+::: {.slide-message}
+硝酸薬後も続く胸痛と冷汗を、緊急性と循環評価に結びつけます。
+:::
+
+## ミニ症例
+ニトログリセリン使用後も胸痛と冷汗が続いています。
+**優先して確認・報告する内容を挙げてください。**
+
+---
+
+## Take-home message {.notion-slide .slide-normal .template-none}
+
+::: {.slide-message}
+不整脈治療の目的を分け、脈拍・心電図・症状・出血を統合して評価します。
+:::
+
+::: {.callout-note}
+**Take-home message**
+1. 不整脈治療の目的を3つに分ける
+2. 脈拍・心電図・症状を組み合わせて評価する
+3. 抗不整脈薬による催不整脈を忘れない
+:::
+
+---
+
+## 不整脈治療薬を目的と観察で比較する {.notion-slide .slide-comparison .template-drug-class-comparison}
+
+::: {.slide-message}
+心拍数調節・リズム調節・血栓予防を、作用と観察項目で比較します。
+:::
+
+## まとめ
+<table header-row="true">
+<tr>
+<td>治療目的</td>
+<td>代表的な考え方</td>
+<td>主な観察</td>
+</tr>
+<tr>
+<td>心拍数調節</td>
+<td>房室結節伝導を抑える</td>
+<td>脈拍、血圧、徐脈症状</td>
+</tr>
+<tr>
+<td>リズム調節</td>
+<td>Na・Kなどの電流を変える</td>
+<td>心電図、QT、電解質</td>
+</tr>
+<tr>
+<td>血栓予防</td>
+<td>凝固を抑える</td>
+<td>出血、Hb、腎機能</td>
+</tr>
+</table>
+
+---
+
+## ミニ症例 {.notion-slide .slide-question .template-none}
+
+::: {.slide-message}
+動悸と失神を薬効不足と決めつけず、催不整脈と循環影響を確認します。
+:::
+
+## ミニ症例
+抗不整脈薬開始後に動悸と失神が出現しました。
+**薬効不足と決めつけずに確認すべきことを挙げてください。**
+
+---
+
+## Take-home message {.notion-slide .slide-normal .template-none}
+
+::: {.slide-message}
+抗血栓薬は標的で分類し、出血徴候と検査値・患者背景を統合して評価します。
+:::
+
+::: {.callout-note}
+**Take-home message**
+1. 抗血栓薬は標的で分類する
+2. 出血徴候と検査値・患者背景を統合する
+3. 自己判断の中止ではなく、安全確保と報告につなげる
+:::
+
+---
+
+## 抗血栓薬を標的と観察で比較する {.notion-slide .slide-comparison .template-drug-class-comparison}
+
+::: {.slide-message}
+抗血小板薬・抗凝固薬・血栓溶解薬を、目的と注意点で比較します。
+:::
+
+## まとめ
+<table header-row="true">
+<tr>
+<td>分類</td>
+<td>主な用途の例</td>
+<td>共通の注意</td>
+</tr>
+<tr>
+<td>抗血小板薬</td>
+<td>冠動脈疾患など</td>
+<td>出血</td>
+</tr>
+<tr>
+<td>抗凝固薬</td>
+<td>心房細動、VTEなど</td>
+<td>出血、腎機能、相互作用</td>
+</tr>
+<tr>
+<td>血栓溶解薬</td>
+<td>急性血栓の溶解</td>
+<td>重篤な出血</td>
+</tr>
+</table>
+
+---
+
+## ミニ症例 {.notion-slide .slide-question .template-none}
+
+::: {.slide-message}
+転倒後の頭痛を重篤な出血の可能性として、優先観察と報告に結びつけます。
+:::
+
+## ミニ症例
+抗凝固薬使用中の患者が転倒し、強い頭痛を訴えています。
+**優先して行う観察と報告内容を挙げてください。**
+
+---
+
+## Take-home message {.notion-slide .slide-normal .template-none}
+
+::: {.slide-message}
+ショックは臓器灌流不足として捉え、原因に応じた介入と灌流指標で評価します。
+:::
+
+::: {.callout-note}
+**Take-home message**
+1. ショックは臓器灌流不足として捉える
+2. 原因により必要な循環介入が異なる
+3. 血圧と臓器灌流指標を組み合わせて評価する
+:::
+
+---
+
+## 循環作動薬を作用と観察で比較する {.notion-slide .slide-comparison .template-drug-class-comparison}
+
+::: {.slide-message}
+循環作動薬ごとの作用と、血圧・灌流・副作用の観察を対にして覚えます。
+:::
+
+## まとめ
+<table header-row="true">
+<tr>
+<td>薬</td>
+<td>主な作用</td>
+<td>主な観察</td>
+</tr>
+<tr>
+<td>ノルアドレナリン</td>
+<td>血管収縮、血管抵抗上昇</td>
+<td>MAP、末梢虚血、不整脈、漏出</td>
+</tr>
+<tr>
+<td>ドブタミン</td>
+<td>心収縮力上昇</td>
+<td>心拍数、心電図、血圧、灌流</td>
+</tr>
+<tr>
+<td>アドレナリン</td>
+<td>心臓・血管への強い作用</td>
+<td>頻脈、不整脈、血糖、乳酸</td>
+</tr>
+</table>
+
+---
+
+## ミニ症例 {.notion-slide .slide-question .template-none}
+
+::: {.slide-message}
+血圧改善と四肢冷感の増強を、薬理作用と末梢灌流評価に結びつけます。
+:::
+
+## ミニ症例
+昇圧薬投与後、血圧は改善しましたが四肢冷感が増強しました。
+**考えられる作用と追加観察を説明してください。**
+
+---
+
+## Take-home message {.notion-slide .slide-normal .template-none}
+
+::: {.slide-message}
+動脈虚血と静脈血栓を症状から区別し、出血と血栓再発を同時に観察します。
+:::
+
+::: {.callout-note}
+**Take-home message**
+1. 動脈虚血と静脈血栓を症状から区別する
+2. DVTは肺血栓塞栓症につながり得る
+3. 抗血栓療法では出血と再発を同時に観察する
+:::
+
+---
+
+## 血栓性疾患を症状と観察で比較する {.notion-slide .slide-comparison .template-drug-class-comparison}
+
+::: {.slide-message}
+動脈疾患・DVT・肺塞栓・抗凝固療法を、優先観察項目で比較します。
+:::
+
+## まとめ
+<table header-row="true">
+<tr>
+<td>状態</td>
+<td>優先して確認すること</td>
+</tr>
+<tr>
+<td>末梢動脈疾患</td>
+<td>疼痛、冷感、色調、脈拍、皮膚・創傷</td>
+</tr>
+<tr>
+<td>DVT</td>
+<td>片脚腫脹、疼痛、左右差、危険因子</td>
+</tr>
+<tr>
+<td>肺血栓塞栓症</td>
+<td>呼吸困難、胸痛、SpO₂、循環動態</td>
+</tr>
+<tr>
+<td>抗凝固療法中</td>
+<td>出血、Hb、腎機能、併用薬</td>
+</tr>
+</table>
+
+---
+
+## ミニ症例 {.notion-slide .slide-question .template-none}
+
+::: {.slide-message}
+抗凝固療法中の血尿を、出血評価と血栓再発予防の両面から確認します。
+:::
+
+## ミニ症例
+抗凝固療法中の患者に血尿がみられました。
+**出血評価と血栓再発予防の観点から確認する内容を挙げてください。**
+
+---
+
+## Take-home message {.notion-slide .slide-normal .template-none}
+
+::: {.slide-message}
+肺血管抵抗上昇を右心負荷に結びつけ、3経路と安全性を同時に評価します。
+:::
+
+::: {.callout-note}
+**Take-home message**
+1. 肺血管抵抗上昇は右心負荷につながる
+2. 治療はET・NO・PGI₂の3経路で整理する
+3. 効果と低血圧・右心不全・薬効群固有の注意を同時に評価する
+:::
+
+---
+
+## 肺高血圧症治療薬を経路と観察で比較する {.notion-slide .slide-comparison .template-drug-class-comparison}
+
+::: {.slide-message}
+ET・NO・PGI₂経路を、治療効果・右心不全・安全性で比較します。
+:::
+
+## まとめ
+<table header-row="true">
+<tr>
+<td>経路・確認領域</td>
+<td>主な薬・項目</td>
+<td>主な観察</td>
+</tr>
+<tr>
+<td>ET</td>
+<td>エンドセリン受容体拮抗薬</td>
+<td>肝機能、浮腫、妊娠回避</td>
+</tr>
+<tr>
+<td>NO</td>
+<td>PDE5阻害薬、sGC刺激薬</td>
+<td>血圧、相互作用、息切れ</td>
+</tr>
+<tr>
+<td>PGI₂</td>
+<td>PGI₂製剤・受容体作動薬</td>
+<td>血圧、投与経路、機器管理</td>
+</tr>
+<tr>
+<td>右心不全</td>
+<td>浮腫、体重、尿量</td>
+<td>呼吸、失神、循環動態</td>
+</tr>
+</table>
+
+---
+
+## ミニ症例 {.notion-slide .slide-question .template-none}
+
+::: {.slide-message}
+失神と血圧低下を、治療薬の作用と右心不全の緊急性に結びつけます。
+:::
+
+## ミニ症例
+肺高血圧症治療中に失神と血圧低下がみられました。
+**緊急度、追加観察、報告内容を説明してください。**
+

@@ -1,0 +1,9 @@
+---
+title: "第4回｜統合・定着"
+subtitle: "循環器②"
+format:
+  revealjs:
+    embed-resources: true
+---
+
+{{< include reflection/notion-sync-04.qmd >}}

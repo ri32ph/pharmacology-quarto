@@ -295,3 +295,43 @@ $presentation-line-height: 1.45;
 .reveal .drug-compare-row > div:first-child { border-left: 0; color: #17365d; font-weight: 750; }
 .reveal .drug-compare-row.header > div { border-top: 0; color: #ffffff; background: #17365d; font-weight: 800; }
 .reveal .drug-compare-row:nth-child(odd):not(.header) { background: #f5f9fc; }
+
+.reveal .slide-message {
+  margin: 0.35em 0 0.7em;
+  padding: 0.38em 0.65em;
+  color: #17365d;
+  background: #eef5fb;
+  border-left: 7px solid #2474b5;
+  border-radius: 0.18em;
+  font-weight: 700;
+}
+
+.reveal .concept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55em;
+}
+
+.reveal .concept-card {
+  padding: 0.55em 0.7em;
+  background: #f7f9fc;
+  border: 2px solid #d9e3ee;
+  border-radius: 0.35em;
+}
+
+.reveal .bp-equation {
+  margin: 0.55em auto;
+  padding: 0.42em 0.7em;
+  max-width: 82%;
+  color: #17365d;
+  background: #e7f2fb;
+  border-radius: 0.35em;
+  text-align: center;
+  font-size: 1.12em;
+  font-weight: 800;
+}
+
+.reveal .comparison-table table {
+  width: 100%;
+  font-size: 0.72em;
+}

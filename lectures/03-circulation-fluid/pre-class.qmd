@@ -6,4 +6,4 @@ format:
     embed-resources: true
 ---
 
-{{< include pre-class/01-circulation-basics.qmd >}}
+{{< include pre-class/notion-sync-03.qmd >}}

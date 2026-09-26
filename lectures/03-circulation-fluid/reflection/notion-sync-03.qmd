@@ -1,0 +1,191 @@
+<!-- GENERATED FROM NOTION SNAPSHOT 03. DO NOT EDIT DIRECTLY. -->
+
+## Take-home message {.notion-slide .slide-normal .template-none}
+
+::: {.slide-message}
+作用点・効果・副作用・観察を一つの流れで整理します。
+:::
+
+1. 降圧薬は心臓・血管・腎臓への作用で整理する
+2. 効果判定は血圧値と患者の症状を組み合わせる
+3. 副作用は作用点から予測する
+
+---
+
+## 降圧薬を作用と観察で比較する {.notion-slide .slide-comparison .template-drug-class-comparison}
+
+::: {.slide-message}
+薬効群ごとに作用と観察項目を対にして覚えます。
+:::
+
+<table header-row="true">
+<tr>
+<td>薬効群</td>
+<td>主な作用</td>
+<td>注意・観察</td>
+</tr>
+<tr>
+<td>Ca拮抗薬</td>
+<td>血管拡張</td>
+<td>頭痛、ふらつき、末梢性浮腫</td>
+</tr>
+<tr>
+<td>ACE阻害薬・ARB</td>
+<td>RAA系抑制</td>
+<td>血圧、腎機能、K</td>
+</tr>
+<tr>
+<td>β遮断薬</td>
+<td>心拍数・心収縮力低下</td>
+<td>徐脈、低血圧</td>
+</tr>
+<tr>
+<td>利尿薬</td>
+<td>Na・水排泄増加</td>
+<td>脱水、腎機能、電解質</td>
+</tr>
+</table>
+
+---
+
+## ミニ症例 {.notion-slide .slide-question .template-none}
+
+::: {.slide-message}
+観察項目とその理由を作用機序から説明します。
+:::
+
+降圧薬追加後、BPは改善したが起立時にめまいが出現しました。
+**確認すべき項目を3つ挙げ、その理由を説明してください。**
+
+---
+
+## Take-home message {.notion-slide .slide-normal .template-none}
+
+::: {.slide-message}
+心不全治療薬は、うっ血改善と長期的悪化予防の目的で整理し、経過で効果と安全性を判断します。
+:::
+
+::: {.callout-note}
+**Take-home message**
+1. 心不全は、うっ血と低灌流で評価する
+2. 症状改善薬と長期治療薬を区別する
+3. 効果と安全性を患者の経過で比較する
+:::
+
+---
+
+## 心不全治療薬を作用と観察で比較する {.notion-slide .slide-comparison .template-drug-class-comparison}
+
+::: {.slide-message}
+薬効群ごとに目的・作用と観察項目を対にして覚えます。
+:::
+
+## まとめ
+<table header-row="true">
+<tr>
+<td>治療の方向</td>
+<td>代表</td>
+<td>主な観察</td>
+</tr>
+<tr>
+<td>うっ血改善</td>
+<td>ループ利尿薬</td>
+<td>呼吸、浮腫、体重、尿量</td>
+</tr>
+<tr>
+<td>RAA系抑制</td>
+<td>ARNI／ACE阻害薬／ARB</td>
+<td>血圧、腎機能、K</td>
+</tr>
+<tr>
+<td>交感神経抑制</td>
+<td>β遮断薬</td>
+<td>脈拍、血圧、増悪徴候</td>
+</tr>
+<tr>
+<td>アルドステロン抑制</td>
+<td>MRA</td>
+<td>K、腎機能</td>
+</tr>
+<tr>
+<td>イベント抑制</td>
+<td>SGLT2阻害薬</td>
+<td>体液量、腎機能、感染徴候</td>
+</tr>
+</table>
+
+---
+
+## ミニ症例 {.notion-slide .slide-question .template-none}
+
+::: {.slide-message}
+利尿薬増量後の症状改善と、めまい・Cr上昇を分けて評価します。
+:::
+
+## ミニ症例
+利尿薬増量後、呼吸困難は改善した一方、立位時めまいとCr上昇がみられました。
+**何が起きている可能性があり、何を確認しますか。**
+
+---
+
+## Take-home message {.notion-slide .slide-normal .template-none}
+
+::: {.slide-message}
+利尿薬は作用部位で整理し、体液量・電解質・腎機能・生活への影響を経過で評価します。
+:::
+
+::: {.callout-note}
+**Take-home message**
+1. 利尿薬は作用部位で整理する
+2. 体液量と電解質の両方が変化する
+3. 効果と脱水・腎機能悪化を区別する
+:::
+
+---
+
+## 利尿薬を作用と観察で比較する {.notion-slide .slide-comparison .template-drug-class-comparison}
+
+::: {.slide-message}
+薬効群ごとに作用・電解質変化と観察項目を対にして覚えます。
+:::
+
+## まとめ
+<table header-row="true">
+<tr>
+<td>薬効群</td>
+<td>効果</td>
+<td>主な注意</td>
+<td>観察</td>
+</tr>
+<tr>
+<td>ループ</td>
+<td>強いNa利尿</td>
+<td>脱水、低K</td>
+<td>体重、尿量、腎機能、K</td>
+</tr>
+<tr>
+<td>サイアザイド系</td>
+<td>降圧・Na利尿</td>
+<td>低Na、低K</td>
+<td>血圧、Na、K</td>
+</tr>
+<tr>
+<td>MRA</td>
+<td>アルドステロン遮断</td>
+<td>高K</td>
+<td>K、腎機能</td>
+</tr>
+</table>
+
+---
+
+## ミニ症例 {.notion-slide .slide-question .template-none}
+
+::: {.slide-message}
+筋力低下と不整脈を、利尿薬の薬効群と電解質異常に結びつけて評価します。
+:::
+
+## ミニ症例
+利尿薬使用中に筋力低下と不整脈が出現しました。
+**確認すべき薬効群、検査値、追加情報を挙げてください。**
+

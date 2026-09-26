@@ -3,8 +3,8 @@ title: "第3回　血圧・心不全・利尿薬"
 subtitle: "循環と体液を患者全体で評価する"
 ---
 
-{{< include pre-class/01-circulation-basics.qmd >}}
+{{< include pre-class/notion-sync-03.qmd >}}
 
-{{< include face-to-face/01-cases-and-diuretics.qmd >}}
+{{< include face-to-face/notion-sync-03.qmd >}}
 
-{{< include reflection/01-reflection.qmd >}}
+{{< include reflection/notion-sync-03.qmd >}}

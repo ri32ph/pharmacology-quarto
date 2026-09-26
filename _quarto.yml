@@ -15,6 +15,10 @@ project:
     - lectures/03-circulation-fluid/pre-class.qmd
     - lectures/03-circulation-fluid/face-to-face.qmd
     - lectures/03-circulation-fluid/reflection.qmd
+    - lectures/04-cardiovascular-ii/04.qmd
+    - lectures/04-cardiovascular-ii/pre-class.qmd
+    - lectures/04-cardiovascular-ii/face-to-face.qmd
+    - lectures/04-cardiovascular-ii/reflection.qmd
 
 lang: ja
 
