@@ -137,3 +137,161 @@ $presentation-line-height: 1.45;
 .reveal a.ph-simulator::after {
   color: #ffffff;
 }
+
+// 03-01 視覚モデル：Notion本文を講義用の図・カード・比較表へ展開する
+.reveal .model-slide h2,
+.reveal section.model-slide > h2 {
+  margin-bottom: 0.45em;
+}
+
+.reveal .bp-model,
+.reveal .case-model,
+.reveal .drug-compare {
+  font-size: 0.72em;
+}
+
+.reveal .bp-equation {
+  display: grid;
+  grid-template-columns: 1.05fr auto 1.25fr auto 1.25fr;
+  gap: 0.42em;
+  align-items: center;
+}
+
+.reveal .bp-node {
+  min-height: 4.7em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.65em 0.75em;
+  border: 3px solid #2474b5;
+  border-radius: 0.65em;
+  background: #eef7fd;
+  text-align: center;
+  box-shadow: 0 0.2em 0.65em rgba(23, 54, 93, 0.09);
+}
+
+.reveal .bp-node span {
+  color: #17365d;
+  font-size: 1.25em;
+  font-weight: 800;
+}
+
+.reveal .bp-node small {
+  margin-top: 0.28em;
+  color: #586574;
+  font-size: 0.72em;
+}
+
+.reveal .bp-main {
+  border-color: #17365d;
+  background: #17365d;
+}
+
+.reveal .bp-main span,
+.reveal .bp-main small {
+  color: #ffffff;
+}
+
+.reveal .bp-heart { border-color: #c94b5d; background: #fff2f4; }
+.reveal .bp-vessel { border-color: #2474b5; background: #eef7fd; }
+.reveal .bp-symbol { color: #17365d; font-size: 1.55em; font-weight: 800; text-align: center; }
+
+.reveal .bp-connections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65em;
+  margin-top: 0.8em;
+}
+
+.reveal .bp-action {
+  display: flex;
+  align-items: center;
+  gap: 0.65em;
+  padding: 0.58em 0.72em;
+  border-left: 0.35em solid #2474b5;
+  background: #f6f8fa;
+  border-radius: 0.25em;
+}
+
+.reveal .bp-action b { min-width: 2.6em; color: #17365d; }
+.reveal .bp-action span { font-size: 0.82em; }
+.reveal .bp-action.heart { border-color: #c94b5d; }
+.reveal .bp-action.kidney { border-color: #4b9560; }
+
+.reveal .model-takeaway {
+  margin: 0.75em 0 0;
+  padding: 0.55em 0.8em;
+  border-radius: 0.35em;
+  color: #17365d;
+  background: #fff5d9;
+  text-align: center;
+  font-size: 0.86em;
+}
+
+.reveal .patient-card {
+  padding: 0.7em 0.9em;
+  border: 2px solid #a9bfd2;
+  border-radius: 0.5em;
+  background: #f7fafc;
+}
+
+.reveal .patient-card-label {
+  color: #2474b5;
+  font-size: 0.72em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.reveal .patient-card p { margin: 0.25em 0 0; line-height: 1.45; }
+.reveal .case-question { margin: 0.55em 0; color: #17365d; font-size: 1.05em; font-weight: 800; text-align: center; }
+.reveal .judgement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6em; }
+
+.reveal .judgement-card {
+  position: relative;
+  min-height: 5.2em;
+  padding: 0.7em 0.75em 0.55em 2.35em;
+  border-top: 0.28em solid #2474b5;
+  border-radius: 0.35em;
+  background: #eef7fd;
+}
+
+.reveal .judgement-card > span {
+  position: absolute;
+  top: 0.62em;
+  left: 0.65em;
+  width: 1.25em;
+  height: 1.25em;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #ffffff;
+  background: #2474b5;
+  font-weight: 800;
+}
+
+.reveal .judgement-card p { margin: 0; font-size: 0.88em; line-height: 1.42; }
+.reveal .check-strip { display: grid; grid-template-columns: auto 1fr; gap: 0.75em; margin-top: 0.6em; padding: 0.55em 0.75em; border-radius: 0.35em; background: #f2f4f7; }
+.reveal .check-strip b { color: #17365d; }
+.reveal .check-strip span { font-size: 0.87em; }
+
+.reveal .drug-compare {
+  overflow: hidden;
+  border: 1px solid #cbd6df;
+  border-radius: 0.45em;
+}
+
+.reveal .drug-compare-row {
+  display: grid;
+  grid-template-columns: 1.05fr 1.15fr 1.8fr;
+}
+
+.reveal .drug-compare-row > div {
+  padding: 0.48em 0.62em;
+  border-top: 1px solid #dfe6ec;
+  border-left: 1px solid #dfe6ec;
+  line-height: 1.35;
+}
+
+.reveal .drug-compare-row > div:first-child { border-left: 0; color: #17365d; font-weight: 750; }
+.reveal .drug-compare-row.header > div { border-top: 0; color: #ffffff; background: #17365d; font-weight: 800; }
+.reveal .drug-compare-row:nth-child(odd):not(.header) { background: #f5f9fc; }

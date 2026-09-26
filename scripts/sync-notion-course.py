@@ -12,6 +12,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import os
 import re
@@ -155,6 +156,113 @@ def table_markdown(block: dict, token: str) -> list[str]:
     return output + [""]
 
 
+def section_items(blocks: list[dict], heading: str) -> list[str]:
+    """Return plain text items beneath a Notion heading until the next heading."""
+    collecting = False
+    items: list[str] = []
+    for block in blocks:
+        kind = block.get("type", "")
+        value = block.get(kind) or {}
+        text = rich_text(value.get("rich_text"))
+        if kind in {"heading_1", "heading_2", "heading_3"}:
+            if collecting:
+                break
+            collecting = text == heading
+            continue
+        if collecting and text:
+            items.append(text)
+    return items
+
+
+def first_table_cells(blocks: list[dict], token: str) -> list[list[str]]:
+    for block in blocks:
+        if block.get("type") != "table":
+            continue
+        rows = fetch_children(block["id"], token)
+        return [
+            [rich_text(cell) for cell in row.get("table_row", {}).get("cells", [])]
+            for row in rows
+            if row.get("type") == "table_row"
+        ]
+    return []
+
+
+def visual_model_slides(unit: str, phase: str, blocks: list[dict], token: str) -> list[str]:
+    """Create the 03-01 visual model while keeping all facts in Notion slides too."""
+    if not unit.startswith("03-01"):
+        return []
+
+    if phase == "基礎理解":
+        return [
+            "## 血圧を決める仕組み {.model-slide .concept-slide}",
+            "",
+            '<div class="bp-model" role="img" aria-label="血圧は心拍出量と末梢血管抵抗で決まる">',
+            '  <div class="bp-equation">',
+            '    <div class="bp-node bp-main"><span>血圧</span><small>組織へ血液を届ける力</small></div>',
+            '    <div class="bp-symbol">≒</div>',
+            '    <div class="bp-node bp-heart"><span>心拍出量</span><small>心拍数 × 一回拍出量</small></div>',
+            '    <div class="bp-symbol">×</div>',
+            '    <div class="bp-node bp-vessel"><span>末梢血管抵抗</span><small>血管の収縮・拡張</small></div>',
+            '  </div>',
+            '  <div class="bp-connections">',
+            '    <div class="bp-action heart"><b>心臓</b><span>β遮断薬：心拍数・収縮力を抑える</span></div>',
+            '    <div class="bp-action vessel"><b>血管</b><span>Ca拮抗薬：血管を拡張する</span></div>',
+            '    <div class="bp-action kidney"><b>腎臓</b><span>RAA系・利尿薬：体液量を調節する</span></div>',
+            '  </div>',
+            '  <p class="model-takeaway">値だけでなく、<strong>どこが変わって血圧が下がったか</strong>を考える</p>',
+            '</div>',
+            "",
+        ]
+
+    if phase == "臨床判断":
+        case_text = " ".join(section_items(blocks, "症例"))
+        considerations = section_items(blocks, "考える要点")
+        checks = "、".join(section_items(blocks, "追加確認"))
+        cards = "\n".join(
+            f'<div class="judgement-card"><span>{index}</span><p>{html.escape(item)}</p></div>'
+            for index, item in enumerate(considerations[:3], 1)
+        )
+        return [
+            "## 症例から降圧効果を判断する {.model-slide .case-slide}",
+            "",
+            '<div class="case-model">',
+            '  <div class="patient-card">',
+            '    <div class="patient-card-label">CASE 03-01</div>',
+            f'    <p>{html.escape(case_text)}</p>',
+            '  </div>',
+            '  <div class="case-question">血圧は改善した。それだけで「適切」と判断できる？</div>',
+            f'  <div class="judgement-grid">{cards}</div>',
+            f'  <div class="check-strip"><b>追加確認</b><span>{html.escape(checks)}</span></div>',
+            '</div>',
+            "",
+        ]
+
+    if phase == "統合・定着":
+        rows = first_table_cells(blocks, token)
+        if not rows:
+            return []
+        header = rows[0]
+        body_rows = "\n".join(
+            '<div class="drug-compare-row">'
+            + "".join(f'<div>{html.escape(cell)}</div>' for cell in row)
+            + "</div>"
+            for row in rows[1:]
+        )
+        header_cells = "".join(f'<div>{html.escape(cell)}</div>' for cell in header)
+        return [
+            "## 降圧薬を作用と観察で比較する {.model-slide .compare-slide}",
+            "",
+            '<div class="drug-compare" role="table" aria-label="降圧薬の比較">',
+            f'  <div class="drug-compare-row header">{header_cells}</div>',
+            f'  {body_rows}',
+            '</div>',
+            '<p class="model-takeaway">薬効群の暗記ではなく、<strong>作用 → 起こり得る変化 → 観察</strong>でつなぐ</p>',
+            "",
+        ]
+
+    return []
+
+
 def blocks_to_markdown(blocks: list[dict], token: str, unit: str) -> list[str]:
     lines: list[str] = []
     numbered = 0
@@ -230,6 +338,7 @@ def generate(token: str) -> dict[str, str]:
         for material_name, page_id, blocks in sorted(pages):
             unit = normalize_unit(material_name)
             lines.extend([f"## {unit}", "", f"<!-- notion-page-id: {page_id} -->", ""])
+            lines.extend(visual_model_slides(unit, phase, blocks, token))
             lines.extend(blocks_to_markdown(blocks, token, unit))
         generated[phase] = "\n".join(lines).rstrip() + "\n"
     return generated
