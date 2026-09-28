@@ -20,6 +20,13 @@ API_VERSION = "2025-09-03"
 MATERIALS_SOURCE = os.environ.get(
     "NOTION_STUDENT_MATERIALS_ID", "3cfa2d0d-cc9d-8033-a4d4-000b506e846e"
 )
+DRUG_CLASSES_DATABASE = os.environ.get(
+    "NOTION_DRUG_CLASSES_DATABASE_ID", "3dfa2d0d-cc9d-8047-8964-fcbacccc5377"
+)
+DRUG_CLASSES_SOURCE = os.environ.get("NOTION_DRUG_CLASSES_SOURCE_ID", "")
+YAKURILAB_BASE_URL = os.environ.get(
+    "YAKURILAB_BASE_URL", "https://yakuri-lab.vercel.app"
+).rstrip("/")
 OUTPUT_ROOT = ROOT / "lectures" / "notion"
 PUBLISHED_STATES = {"公開可", "配布可"}
 PHASE_ORDER = ("基礎理解", "臨床判断", "統合・定着")
@@ -60,6 +67,11 @@ def select_value(prop: dict | None) -> str:
     return ((prop or {}).get("select") or {}).get("name", "")
 
 
+def status_value(prop: dict | None) -> str:
+    prop = prop or {}
+    return (prop.get("status") or prop.get("select") or {}).get("name", "")
+
+
 def relation_ids(prop: dict | None) -> list[str]:
     return [item["id"] for item in (prop or {}).get("relation", []) if item.get("id")]
 
@@ -69,6 +81,34 @@ def query_materials(token: str) -> list[dict]:
     payload: dict = {
         "filter": {"property": "選択", "select": {"is_not_empty": True}},
         "sorts": [{"property": "名前", "direction": "ascending"}],
+        "page_size": 100,
+    }
+    rows: list[dict] = []
+    while True:
+        result = request_json(url, token, payload)
+        rows.extend(result.get("results", []))
+        if not result.get("has_more"):
+            return rows
+        payload["start_cursor"] = result["next_cursor"]
+
+
+def resolve_drug_classes_source(token: str) -> str:
+    if DRUG_CLASSES_SOURCE:
+        return DRUG_CLASSES_SOURCE
+    database = request_json(
+        f"https://api.notion.com/v1/databases/{DRUG_CLASSES_DATABASE}", token
+    )
+    sources = database.get("data_sources") or []
+    if not sources:
+        raise RuntimeError("薬効群DBのdata sourceを取得できません。")
+    return sources[0]["id"]
+
+
+def query_drug_classes(token: str) -> list[dict]:
+    source_id = resolve_drug_classes_source(token)
+    url = f"https://api.notion.com/v1/data_sources/{source_id}/query"
+    payload: dict = {
+        "sorts": [{"property": "Order", "direction": "ascending"}],
         "page_size": 100,
     }
     rows: list[dict] = []
@@ -181,6 +221,88 @@ def unit_code(name: str) -> str | None:
     return match.group(1) if match else None
 
 
+def property_text(prop: dict | None) -> str:
+    prop = prop or {}
+    if prop.get("type") in {"title", "rich_text"}:
+        return plain_text(prop.get(prop["type"]))
+    if prop.get("type") in {"select", "status"}:
+        return ((prop.get(prop["type"]) or {}).get("name") or "").strip()
+    if prop.get("type") == "number" and prop.get("number") is not None:
+        return str(prop["number"])
+    return ""
+
+
+def page_unit_code(page: dict) -> str | None:
+    for prop in (page.get("properties") or {}).values():
+        code = unit_code(property_text(prop))
+        if code and "-" in code:
+            return code
+    return None
+
+
+def page_title(page: dict) -> str:
+    for prop in (page.get("properties") or {}).values():
+        if prop.get("type") == "title":
+            return property_text(prop)
+    return ""
+
+
+def normalized_label(value: str) -> str:
+    value = re.sub(r"^\d{2}(?:-\d{2})?\s*", "", value)
+    return re.sub(r"[\s・／/（）()]+", "", value).replace("と", "")
+
+
+def load_drug_classes(token: str) -> list[dict]:
+    classes: list[dict] = []
+    related_page_cache: dict[str, dict] = {}
+    for row in query_drug_classes(token):
+        props = row.get("properties", {})
+        if status_value(props.get("Status")) != "Published":
+            continue
+        name = title_value(props.get("Name"))
+        slug = plain_text(props.get("Slug", {}).get("rich_text"))
+        if not name or not slug:
+            continue
+        areas = []
+        for page_id in relation_ids(props.get("学習領域")):
+            if page_id not in related_page_cache:
+                related_page_cache[page_id] = request_json(
+                    f"https://api.notion.com/v1/pages/{page_id}", token
+                )
+            page = related_page_cache[page_id]
+            areas.append(
+                {
+                    "code": page_unit_code(page),
+                    "title": page_title(page),
+                }
+            )
+        classes.append({"name": name, "slug": slug, "areas": areas})
+    return classes
+
+
+def attach_drug_classes(grouped: dict[str, dict[str, dict]], classes: list[dict]) -> None:
+    for units in grouped.values():
+        for code, unit in units.items():
+            matches = []
+            unit_label_normalized = normalized_label(unit["label"])
+            for drug_class in classes:
+                related = any(
+                    area["code"] == code
+                    or (
+                        area["title"]
+                        and (
+                            normalized_label(area["title"]) == unit_label_normalized
+                            or normalized_label(area["title"]) in unit_label_normalized
+                            or unit_label_normalized in normalized_label(area["title"])
+                        )
+                    )
+                    for area in drug_class["areas"]
+                )
+                if related:
+                    matches.append({"name": drug_class["name"], "slug": drug_class["slug"]})
+            unit["drug_classes"] = matches
+
+
 def unit_label(name: str) -> str:
     return name.split("｜", 1)[0].strip()
 
@@ -227,7 +349,8 @@ def load_published_materials(token: str) -> dict[str, dict[str, dict]]:
             print(f"skip {name}: status={status or 'empty'}", file=sys.stderr)
             continue
         unit = grouped[number].setdefault(
-            code, {"code": code, "label": unit_label(name), "phases": {}}
+            code,
+            {"code": code, "label": unit_label(name), "phases": {}, "drug_classes": []},
         )
         unit["phases"][phase] = {
             "name": name,
@@ -293,12 +416,21 @@ def landing_content(
                     links.append(f'<a class="phase-cell {css_class}" href="{link_prefix}{number}/{code}/{filename}">{phase}</a>')
                 else:
                     links.append(f'<span class="phase-cell {css_class} disabled">未公開</span>')
+            drug_class_links = "".join(
+                f'<a href="{YAKURILAB_BASE_URL}/dictionary/drug-classes/{html.escape(item["slug"])}/" target="_blank" rel="noopener">{html.escape(item["name"])}</a>'
+                for item in unit.get("drug_classes", [])
+            )
+            drug_class_cell = (
+                drug_class_links
+                if drug_class_links
+                else '<span class="coming-soon">関連薬効群なし</span>'
+            )
             rows.append(
                 '<section class="lecture-row unit-row">'
                 f'<div class="lecture-info"><strong>{html.escape(unit["label"])}</strong><span>Notion学生用教材</span></div>'
                 + "".join(links)
                 + f'<a class="phase-cell full" href="{link_prefix}{number}/{code}/full.html">全体版を開く</a>'
-                + '<div class="drug-class-cell"><span class="coming-soon">Notion連動</span></div>'
+                + f'<div class="drug-class-cell">{drug_class_cell}</div>'
                 + "</section>"
             )
     content = [
@@ -399,6 +531,10 @@ def main() -> int:
         print("NOTION_TOKEN (or NOTION_API_KEY) is required", file=sys.stderr)
         return 2
     grouped = load_published_materials(token)
+    try:
+        attach_drug_classes(grouped, load_drug_classes(token))
+    except Exception as error:
+        print(f"Drug-class sync skipped: {error}", file=sys.stderr)
     write_site(grouped, token, activate_index=args.activate_index)
     print(
         "Notion all-lecture sync complete: "

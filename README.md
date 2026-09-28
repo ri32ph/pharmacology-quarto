@@ -52,3 +52,5 @@ quarto render
 ```
 
 公開入口は`lectures/notion/index.html`です。Vercelでは`--activate-index`を付け、通常のトップページもNotion生成版へ差し替えます。Notion取得に失敗した場合は、Gitに保存された手動トップページを使用します。Notion側で非公開の教材は掲載されません。
+
+薬効群DBの`Status=Published`、`Slug`、`学習領域`Relationも読み取り、小単元の右端にYakuriLab辞書へのリンクを表示します。薬効群DBを取得できない場合も講義資料の生成は継続します。
