@@ -54,3 +54,17 @@ quarto render
 公開入口は`lectures/notion/index.html`です。Vercelでは`--activate-index`を付け、通常のトップページもNotion生成版へ差し替えます。Notion取得に失敗した場合は、Gitに保存された手動トップページを使用します。Notion側で非公開の教材は掲載されません。
 
 薬効群DBの`Status=Published`、`Slug`、`学習領域`Relationも読み取り、小単元の右端にYakuriLab辞書へのリンクを表示します。薬効群DBを取得できない場合も講義資料の生成は継続します。
+
+### 小単元のマインドマップ
+
+小単元名の横に、公開済みマップがある場合だけ「マインドマップ」を表示します。対応は`data/unit-mindmaps.json`の`units`に、小単元コードをキーとして最大1件登録します。`href`はサイトルートからの相対パスで、既存のHTMLを指定します。新しいHTMLは`_quarto.yml`の`project.resources`にも追加してください。
+
+```json
+{"units": {"03-01": {"name": "血圧と降圧薬", "href": "lectures/mindmaps/blood-pressure-antihypertensives.html"}}, "unassigned": []}
+```
+
+この例のHTMLは未作成です。ファイル生成と公開準備を終えてから登録してください。`マインドマップSlug`だけでは生成済みか判断できないため、自動的にリンクを組み立てません。
+
+学習資材または学生用教材に`学習領域`Relationがある場合は、コードが一致する学習領域の`マインドマップ公開`を確認します。明示的にOFFならリンクを出しません。`マインドマップ名`があれば表示情報に使用します。プロパティが未整備の場合は、この登録表が公開設定になります。Relation取得に失敗した小単元もリンクを出しません。
+
+既存のパーキンソン病マップは正式な小単元コードを確認できていないため、`unassigned`に置き、下部の関連教材から開ける状態を維持しています。コード確定後に`units`へ移してください。名前の部分一致や講義番号だけで別の小単元に接続することはありません。手動フォールバックの`index.qmd`に該当小単元がある場合は、同じ`.unit-heading`内に`.unit-mindmap`リンクを追加します。生成時の`manifest.json`には小単元ごとの公開マップを`mindmaps`に記録します。

@@ -28,6 +28,7 @@ YAKURILAB_BASE_URL = os.environ.get(
     "YAKURILAB_BASE_URL", "https://yakuri-lab.vercel.app"
 ).rstrip("/")
 OUTPUT_ROOT = ROOT / "lectures" / "notion"
+MINDMAP_REGISTRY = ROOT / "data" / "unit-mindmaps.json"
 PUBLISHED_STATES = {"公開可", "配布可"}
 PHASE_ORDER = ("基礎理解", "臨床判断", "統合・定着")
 PHASE_FILES = {
@@ -307,6 +308,63 @@ def unit_label(name: str) -> str:
     return name.split("｜", 1)[0].strip()
 
 
+def load_mindmap_registry() -> dict:
+    """Explicit unit-code mapping; never infer a unit from a disease name."""
+    registry = json.loads(MINDMAP_REGISTRY.read_text(encoding="utf-8"))
+    for code in registry.get("units", {}):
+        if not re.fullmatch(r"\d{2}-\d{2}", code):
+            raise ValueError(f"Invalid mind map unit code: {code}")
+    for item in [*registry.get("units", {}).values(), *registry.get("unassigned", [])]:
+        href = item.get("href", "")
+        # Site-relative, committed HTML only: do not advertise unbuilt maps.
+        path = Path(href)
+        if (not href or path.is_absolute() or ".." in path.parts
+                or ":" in href or path.suffix != ".html"
+                or not (ROOT / path).is_file()):
+            raise ValueError(f"Mind map must reference an existing site HTML file: {href}")
+    return registry
+
+
+def attach_mindmaps(grouped: dict[str, dict[str, dict]], token: str, registry: dict) -> None:
+    page_cache: dict[str, dict] = {}
+    for units in grouped.values():
+        for code, unit in units.items():
+            unit.pop("mindmap", None)
+            entry = registry.get("units", {}).get(code)
+            if not entry:
+                continue
+            settings = []
+            try:
+                for page_id in unit.get("learning_area_ids", []):
+                    if page_id not in page_cache:
+                        page_cache[page_id] = request_json(
+                            f"https://api.notion.com/v1/pages/{page_id}", token
+                        )
+                    page = page_cache[page_id]
+                    # Only the exact small-unit relation may control this map.
+                    if page_unit_code(page) == code:
+                        settings.append(page.get("properties", {}))
+            except Exception as error:
+                print(f"Mind map skipped for {code}: {error}", file=sys.stderr)
+                continue
+            if any(props.get("マインドマップ公開", {}).get("checkbox") is False for props in settings):
+                continue
+            name = next((property_text(props.get("マインドマップ名"))
+                         for props in settings if property_text(props.get("マインドマップ名"))), "")
+            unit["mindmap"] = {"href": entry["href"], "name": name or entry.get("name") or unit["label"]}
+
+
+def mindmap_link(unit: dict, *, root_page: bool) -> str:
+    mindmap = unit.get("mindmap")
+    if not mindmap:
+        return ""
+    href = ("" if root_page else "../../") + mindmap["href"]
+    label = f'{unit["label"]}のマインドマップを開く'
+    return (f'<a class="unit-mindmap" href="{html.escape(href, quote=True)}" '
+            f'title="{html.escape(mindmap["name"], quote=True)}" '
+            f'aria-label="{html.escape(label, quote=True)}">マインドマップ</a>')
+
+
 def yaml_text(value: str) -> str:
     return json.dumps(value, ensure_ascii=False)
 
@@ -350,8 +408,12 @@ def load_published_materials(token: str) -> dict[str, dict[str, dict]]:
             continue
         unit = grouped[number].setdefault(
             code,
-            {"code": code, "label": unit_label(name), "phases": {}, "drug_classes": []},
+            {"code": code, "label": unit_label(name), "phases": {}, "drug_classes": [], "learning_area_ids": []},
         )
+        for source_props in (props, page.get("properties", {})):
+            for area_id in relation_ids(source_props.get("学習領域")):
+                if area_id not in unit["learning_area_ids"]:
+                    unit["learning_area_ids"].append(area_id)
         unit["phases"][phase] = {
             "name": name,
             "unit": unit_label(name),
@@ -396,6 +458,7 @@ def landing_content(
     link_prefix: str = "",
     css_path: str = "../../lecture-index.css",
     root_page: bool = False,
+    unassigned_mindmaps: list[dict] | None = None,
 ) -> str:
     rows: list[str] = []
     for number in sorted(grouped):
@@ -427,7 +490,9 @@ def landing_content(
             )
             rows.append(
                 '<section class="lecture-row unit-row">'
-                f'<div class="lecture-info"><strong>{html.escape(unit["label"])}</strong><span>Notion学生用教材</span></div>'
+                f'<div class="lecture-info"><div class="unit-heading"><strong>{html.escape(unit["label"])}</strong>'
+                + mindmap_link(unit, root_page=root_page)
+                + '</div><span>学習段階を選んで開く</span></div>'
                 + "".join(links)
                 + f'<a class="phase-cell full" href="{link_prefix}{number}/{code}/full.html">全体版を開く</a>'
                 + f'<div class="drug-class-cell">{drug_class_cell}</div>'
@@ -447,45 +512,47 @@ def landing_content(
             "::: {.course-intro}",
             "## 15回の講義資料",
             "",
-            "Notionで公開可または配布可にした教材だけを掲載しています。",
+            "小単元から学習段階を選んでください。マインドマップのある小単元は、名前の横から開けます。",
             ":::",
             "",
             "```{=html}",
             '<nav class="course-menu" aria-label="教材メニュー">',
             '<a class="course-menu-link active" href="#lecture-list">講義一覧</a>',
-            ('<a class="course-menu-link mindmap" href="lectures/11-neurology/interactive-mindmap.html">マインドマップ</a>' if root_page else '<a class="course-menu-link mindmap" href="../11-neurology/interactive-mindmap.html">マインドマップ</a>'),
             f'<a class="course-menu-link dictionary" href="{YAKURILAB_BASE_URL}/dictionary/" target="_blank" rel="noopener">薬理学辞書</a>',
             "</nav>",
             "```",
             "",
             "```{=html}",
             '<div id="lecture-list" class="course-table">',
-            '<div class="grid-header" aria-hidden="true"><span>講義・小単元</span><span>基礎理解</span><span>臨床判断</span><span>統合・定着</span><span>全体版</span><span></span></div>',
+            '<div class="grid-header" aria-hidden="true"><span>講義・小単元</span><span>基礎理解</span><span>臨床判断</span><span>統合・定着</span><span>全体版</span><span>関連薬効群</span></div>',
             *rows,
             "</div>",
             "```",
             "",
         ]
-    if root_page:
+    if root_page or unassigned_mindmaps:
         content.extend(
             [
                 "::: {.related-site}",
                 "### 関連教材",
                 "",
-                "[開閉できるマインドマップ](lectures/11-neurology/interactive-mindmap.html){.lecture-button}",
-                "",
+                *[
+                    f'[{item["name"]}]({"" if root_page else "../../"}{item["href"]}){{.lecture-button}}\n'
+                    for item in (unassigned_mindmaps or [])
+                ],
                 "[YakuriLab 辞書・Simulator](https://yakuri-lab.vercel.app/dictionary/){.lecture-button .secondary}",
                 ":::",
                 "",
             ]
         )
-    else:
+    if not root_page:
         content.extend(["[講義サイトへ戻る](../../index.html)", ""])
     return "\n".join(content)
 
 
 def write_site(
-    grouped: dict[str, dict[str, dict]], token: str, activate_index: bool = False
+    grouped: dict[str, dict[str, dict]], token: str, activate_index: bool = False,
+    registry: dict | None = None,
 ) -> None:
     if not grouped:
         raise RuntimeError("公開対象のNotion学生用教材が見つかりません。")
@@ -501,7 +568,10 @@ def write_site(
                         phase_content(number, phase, material, token), encoding="utf-8"
                     )
             (unit_dir / "full.qmd").write_text(full_content(unit, token), encoding="utf-8")
-    (OUTPUT_ROOT / "index.qmd").write_text(landing_content(grouped), encoding="utf-8")
+    unassigned = (registry or {}).get("unassigned", [])
+    (OUTPUT_ROOT / "index.qmd").write_text(
+        landing_content(grouped, unassigned_mindmaps=unassigned), encoding="utf-8"
+    )
     if activate_index:
         (ROOT / "index.qmd").write_text(
             landing_content(
@@ -509,11 +579,17 @@ def write_site(
                 link_prefix="lectures/notion/",
                 css_path="lecture-index.css",
                 root_page=True,
+                unassigned_mindmaps=unassigned,
             ),
             encoding="utf-8",
         )
     manifest = {
         "source": "Notion student materials",
+        "mindmaps": {
+            code: unit["mindmap"]
+            for units in grouped.values() for code, unit in units.items()
+            if unit.get("mindmap")
+        },
         "lectures": {
             number: {
                 code: sorted(unit["phases"]) for code, unit in sorted(units.items())
@@ -539,11 +615,13 @@ def main() -> int:
         print("NOTION_TOKEN (or NOTION_API_KEY) is required", file=sys.stderr)
         return 2
     grouped = load_published_materials(token)
+    registry = load_mindmap_registry()
+    attach_mindmaps(grouped, token, registry)
     try:
         attach_drug_classes(grouped, load_drug_classes(token))
     except Exception as error:
         print(f"Drug-class sync skipped: {error}", file=sys.stderr)
-    write_site(grouped, token, activate_index=args.activate_index)
+    write_site(grouped, token, activate_index=args.activate_index, registry=registry)
     print(
         "Notion all-lecture sync complete: "
         + ", ".join(f"{number}={len(units)} units" for number, units in sorted(grouped.items()))

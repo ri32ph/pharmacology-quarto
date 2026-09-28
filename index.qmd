@@ -12,12 +12,12 @@ format:
 ## 薬の作用から、患者の変化を考える
 
 講義または小単元の行から、学習段階を選んでください。
+マインドマップのある小単元は、名前の横から開けます。
 :::
 
 ```{=html}
 <nav class="course-menu" aria-label="教材メニュー">
   <a class="course-menu-link active" href="#lecture-list">講義一覧</a>
-  <a class="course-menu-link mindmap" href="lectures/11-neurology/interactive-mindmap.html">マインドマップ</a>
   <a class="course-menu-link dictionary" href="https://yakuri-lab.vercel.app/dictionary/" target="_blank" rel="noopener">薬理学辞書</a>
 </nav>
 <div id="lecture-list" class="course-table">
@@ -32,7 +32,7 @@ format:
 
   <section class="lecture-row">
     <div class="lecture-info">
-      <strong>第1回　薬が効く仕組み</strong>
+      <div class="unit-heading"><strong>第1回　薬が効く仕組み</strong></div>
       <span>作用点から患者の変化までをつなぐ</span>
     </div>
     <a class="phase-cell pre" href="lectures/01-drug-action/pre-class.html">基礎理解</a>
@@ -44,7 +44,7 @@ format:
 
   <section class="lecture-row">
     <div class="lecture-info">
-      <strong>第2回　薬物動態・副作用・安全な与薬</strong>
+      <div class="unit-heading"><strong>第2回　薬物動態・副作用・安全な与薬</strong></div>
       <span>薬の動きから効きすぎを予測する</span>
     </div>
     <a class="phase-cell pre" href="lectures/02-pharmacokinetics-safety/pre-class.html">基礎理解</a>
@@ -61,7 +61,7 @@ format:
 
   <section class="lecture-row unit-row">
     <div class="lecture-info">
-      <strong>03-01　高血圧・降圧薬</strong>
+      <div class="unit-heading"><strong>03-01　高血圧・降圧薬</strong></div>
       <span>血圧と症状から降圧効果を評価する</span>
     </div>
     <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/血圧を決める仕組み">基礎理解</a>
@@ -78,7 +78,7 @@ format:
 
   <section class="lecture-row unit-row">
     <div class="lecture-info">
-      <strong>03-02　心不全治療薬</strong>
+      <div class="unit-heading"><strong>03-02　心不全治療薬</strong></div>
       <span>うっ血と低灌流を分けて考える</span>
     </div>
     <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/心不全を捉える仕組み">基礎理解</a>
@@ -96,7 +96,7 @@ format:
 
   <section class="lecture-row unit-row">
     <div class="lecture-info">
-      <strong>03-03　利尿薬・体液管理</strong>
+      <div class="unit-heading"><strong>03-03　利尿薬・体液管理</strong></div>
       <span>効果と利尿過剰を観察から見分ける</span>
     </div>
     <a class="phase-cell pre" href="lectures/03-circulation-fluid/pre-class.html#/ネフロンと利尿薬の作用点">基礎理解</a>
@@ -117,7 +117,7 @@ format:
 
   <section class="lecture-row">
     <div class="lecture-info">
-      <strong>第4回　循環器②</strong>
+      <div class="unit-heading"><strong>第4回　循環器②</strong></div>
       <span>6つの学習領域を段階別に確認する</span>
     </div>
     <a class="phase-cell pre" href="lectures/04-cardiovascular-ii/pre-class.html">基礎理解</a>
@@ -134,9 +134,7 @@ format:
 
 [Notion連動｜15回の講義資料](lectures/notion/index.html){.lecture-button}
 
-[パーキンソン病マインドマップ](lectures/11-neurology/parkinson-mindmap.html){.lecture-button}
-
-[開閉できるマインドマップ](lectures/11-neurology/interactive-mindmap.html){.lecture-button}
+[パーキンソン病マインドマップ](lectures/11-neurology/interactive-mindmap.html){.lecture-button}
 
 [YakuriLab 辞書・Simulator](https://yakuri-lab.vercel.app/dictionary/){.lecture-button .secondary}
 :::

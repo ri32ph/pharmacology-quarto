@@ -21,11 +21,10 @@ main.content { max-width: 1420px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
 .course-menu-link { display: inline-flex; align-items: center; justify-content: center; min-height: 2.8rem; padding: .65rem 1.05rem; border: 1px solid var(--course-border); border-radius: 999px; color: var(--course-navy) !important; background: #fff; font-weight: 700; line-height: 1.2; text-decoration: none; box-shadow: 0 2px 8px rgba(23, 54, 93, .06); }
 .course-menu-link:hover { border-color: var(--course-blue); background: var(--course-pale-blue); }
 .course-menu-link.active { color: #fff !important; border-color: var(--course-navy); background: var(--course-navy); }
-.course-menu-link.mindmap::before { margin-right: .42rem; content: "◇"; color: var(--course-blue); font-size: 1.05rem; }
 .course-menu-link.dictionary::before { margin-right: .42rem; content: "▤"; color: #7651a8; font-size: 1rem; }
 
 .course-table { margin-top: 2rem; overflow: hidden; background: #fff; border: 1px solid var(--course-border); border-radius: .55rem; box-shadow: 0 4px 18px rgba(23, 54, 93, .08); }
-.grid-header, .lecture-row { display: grid; grid-template-columns: minmax(280px, 2.2fr) repeat(4, minmax(100px, .8fr)) minmax(230px, 1.7fr); align-items: stretch; }
+.grid-header, .lecture-row { display: grid; grid-template-columns: minmax(260px, 2.5fr) repeat(4, minmax(88px, .8fr)) minmax(180px, 1.6fr); align-items: stretch; }
 .grid-header { color: #fff; background: var(--course-navy); font-size: .9rem; font-weight: 700; text-align: center; }
 .grid-header span { padding: .8rem .65rem; border-right: 1px solid rgba(255,255,255,.2); }
 .grid-header span:first-child { text-align: left; }
@@ -33,12 +32,20 @@ main.content { max-width: 1420px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
 .lecture-info { display: flex; flex-direction: column; justify-content: center; gap: .22rem; padding: 1rem 1.1rem; }
 .lecture-info strong { color: var(--course-navy); font-size: 1rem; }
 .lecture-info span { color: #5d6c78; font-size: .88rem; }
+.unit-heading { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .65rem; }
+.unit-heading strong { flex: 1 1 10rem; overflow-wrap: anywhere; }
+.unit-mindmap { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: .35rem; min-height: 2.25rem; padding: .3rem .6rem; border: 1px solid #bccfd9; border-radius: .4rem; color: #24576d !important; background: #f0f8fa; font-size: .75rem; font-weight: 700; line-height: 1.4; white-space: nowrap; text-decoration: none; }
+.unit-mindmap::before { content: "◇"; font-size: 1rem; line-height: 1; }
+.unit-mindmap:hover { color: #fff !important; border-color: #24576d; background: #24576d; }
+.unit-mindmap:focus-visible, .phase-cell:focus-visible, .course-menu-link:focus-visible, .drug-class-cell a:focus-visible { outline: 3px solid #d7791c; outline-offset: 3px; position: relative; z-index: 1; }
 .phase-cell { display: flex; align-items: center; justify-content: center; min-height: 4.5rem; padding: .7rem; border-left: 1px solid var(--course-border); color: var(--course-navy) !important; text-decoration: none; font-weight: 700; text-align: center; transition: filter .15s ease, box-shadow .15s ease; }
 .phase-cell:hover { filter: brightness(.96); box-shadow: inset 0 0 0 2px var(--course-blue); }
 .phase-cell.pre { background: var(--pre-bg); }
 .phase-cell.classroom { background: var(--class-bg); }
 .phase-cell.review { background: var(--review-bg); }
 .phase-cell.full { background: #fff; }
+.phase-cell.disabled { color: #6b7780 !important; background: #f3f5f7; font-size: .85rem; font-weight: 400; }
+.phase-cell.disabled:hover { filter: none; box-shadow: none; }
 .drug-class-cell { display: flex; flex-wrap: wrap; align-content: center; align-items: center; gap: .38rem; min-height: 4.5rem; padding: .65rem .75rem; border-left: 1px solid var(--course-border); background: #f7f3fc; }
 .drug-class-cell a { display: inline-block; padding: .28rem .55rem; border: 1px solid #c8b8df; border-radius: 999px; color: #4b3472 !important; background: #fff; font-size: .78rem; font-weight: 700; line-height: 1.3; text-decoration: none; }
 .drug-class-cell a:hover { border-color: #7651a8; background: #efe7f8; }
@@ -53,7 +60,7 @@ main.content { max-width: 1420px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
 .related-site { margin-top: 2.5rem; padding: 1.5rem; background: var(--course-pale-blue); }
 .related-site h3 { margin-top: 0; color: var(--course-navy); }
 
-@media (max-width: 760px) {
+@media (max-width: 980px) {
   .quarto-title-block { padding: 2rem 1.25rem; }
   main.content { padding: 1.5rem 1rem 3rem; }
   .course-table { overflow: visible; border: 0; background: transparent; box-shadow: none; }
@@ -65,6 +72,7 @@ main.content { max-width: 1420px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
   .lecture-row { display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; box-sizing: border-box; gap: .55rem; margin-bottom: 1rem; padding: 1rem; background: #fff; border: 1px solid var(--course-border); border-top: 5px solid var(--course-blue); border-radius: .45rem; box-shadow: 0 3px 12px rgba(23, 54, 93, .07); }
   .lecture-info, .unit-row .lecture-info { padding: 0 0 .35rem; }
   .lecture-info strong { font-size: 1.05rem; }
+  .unit-mindmap { min-height: 2.75rem; padding-inline: .7rem; }
   .phase-cell { min-height: auto; padding: .75rem 1rem; border: 0; border-radius: .3rem; }
   .drug-class-cell { min-height: auto; padding: .7rem; border: 0; border-radius: .3rem; }
   .drug-class-cell::before { width: 100%; color: var(--course-navy); content: "関連薬効群"; font-size: .8rem; font-weight: 700; }
