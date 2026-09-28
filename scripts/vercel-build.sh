@@ -10,6 +10,12 @@ else
   echo "Notion sync failed; rendering the committed Quarto fallback." >&2
 fi
 
+if node scripts/sync-notion-interactive-mindmap.mjs; then
+  echo "Using the Notion-generated interactive mind map."
+else
+  echo "Mind map sync failed; using the committed interactive fallback." >&2
+fi
+
 if command -v quarto >/dev/null 2>&1; then
   quarto_bin=$(command -v quarto)
 else

@@ -28,3 +28,15 @@ quarto render
 ### Vercel
 
 Vercelの`pharmacology-quarto`プロジェクトにSecret環境変数`NOTION_TOKEN`を設定します。デプロイ時に`scripts/vercel-build.sh`が同期とRenderを行います。Notionの変更だけでは自動デプロイされないため、反映時はVercelでRedeployします。
+
+## 教材マスター → 開閉式マインドマップ
+
+`看護薬理学｜教材マスター`の`マインドマップ表示`がONの項目を取得し、`親項目`Relationと`表示順`から開閉式HTMLを生成します。
+
+```bash
+export NOTION_TOKEN='secret_...'
+node scripts/sync-notion-interactive-mindmap.mjs
+quarto render
+```
+
+生成先は`lectures/11-neurology/interactive-mindmap.html`です。Vercelではデプロイ時に自動生成し、Notion APIエラー時はGitに保存されたHTMLを使用します。
