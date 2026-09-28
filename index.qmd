@@ -127,5 +127,7 @@ format:
 ::: {.related-site}
 ### 関連教材
 
+[パーキンソン病マインドマップ](lectures/11-neurology/parkinson-mindmap.html){.lecture-button}
+
 [YakuriLab 辞書・Simulator](https://yakuri-lab.vercel.app/dictionary/){.lecture-button .secondary}
 :::
