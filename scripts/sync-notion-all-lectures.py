@@ -244,7 +244,6 @@ def page_unit_code(page: dict) -> str | None:
 
 def load_drug_classes(token: str) -> list[dict]:
     classes: list[dict] = []
-    related_page_cache: dict[str, dict] = {}
     for row in query_drug_classes(token):
         props = row.get("properties", {})
         if status_value(props.get("Status")) != "Published":
@@ -253,22 +252,13 @@ def load_drug_classes(token: str) -> list[dict]:
         slug = plain_text(props.get("Slug", {}).get("rich_text"))
         if not name or not slug:
             continue
-        area_codes = []
-        for page_id in relation_ids(props.get("学習領域")):
-            if page_id not in related_page_cache:
-                related_page_cache[page_id] = request_json(
-                    f"https://api.notion.com/v1/pages/{page_id}", token
-                )
-            page = related_page_cache[page_id]
-            code = page_unit_code(page)
-            if code:
-                area_codes.append(code)
-            else:
-                print(
-                    f"skip drug-class relation without an exact small-unit code: {name} -> {page_id}",
-                    file=sys.stderr,
-                )
-        classes.append({"name": name, "slug": slug, "area_codes": area_codes})
+        classes.append(
+            {
+                "name": name,
+                "slug": slug,
+                "learning_area_ids": relation_ids(props.get("学習領域")),
+            }
+        )
     return classes
 
 
@@ -276,8 +266,9 @@ def attach_drug_classes(grouped: dict[str, dict[str, dict]], classes: list[dict]
     for units in grouped.values():
         for code, unit in units.items():
             matches = []
+            unit_area_ids = set(unit.get("learning_area_ids", []))
             for drug_class in classes:
-                if code in drug_class["area_codes"]:
+                if unit_area_ids.intersection(drug_class["learning_area_ids"]):
                     matches.append({"name": drug_class["name"], "slug": drug_class["slug"]})
             unit["drug_classes"] = matches
 
