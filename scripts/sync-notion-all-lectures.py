@@ -175,6 +175,11 @@ def lecture_number(name: str) -> str | None:
     return f"{number:02d}" if 1 <= number <= 15 else None
 
 
+def unit_code(name: str) -> str | None:
+    match = re.match(r"^(\d{2}(?:-\d{2})?)\b", name.strip())
+    return match.group(1) if match else None
+
+
 def unit_label(name: str) -> str:
     return name.split("｜", 1)[0].strip()
 
@@ -201,14 +206,15 @@ def frontmatter(title: str, subtitle: str) -> list[str]:
     ]
 
 
-def load_published_materials(token: str) -> dict[str, dict[str, list[dict]]]:
-    grouped: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
+def load_published_materials(token: str) -> dict[str, dict[str, dict]]:
+    grouped: dict[str, dict[str, dict]] = defaultdict(dict)
     for row in query_materials(token):
         props = row.get("properties", {})
         name = title_value(props.get("名前"))
         number = lecture_number(name)
+        code = unit_code(name)
         phase = select_value(props.get("選択"))
-        if number is None or phase not in PHASE_ORDER:
+        if number is None or code is None or phase not in PHASE_ORDER:
             continue
         student_ids = relation_ids(props.get("学生用教材"))
         if len(student_ids) != 1:
@@ -219,68 +225,75 @@ def load_published_materials(token: str) -> dict[str, dict[str, list[dict]]]:
         if status not in PUBLISHED_STATES:
             print(f"skip {name}: status={status or 'empty'}", file=sys.stderr)
             continue
-        grouped[number][phase].append(
-            {
-                "name": name,
-                "unit": unit_label(name),
-                "page_id": student_ids[0],
-                "blocks": fetch_children(student_ids[0], token),
-            }
+        unit = grouped[number].setdefault(
+            code, {"code": code, "label": unit_label(name), "phases": {}}
         )
+        unit["phases"][phase] = {
+            "name": name,
+            "unit": unit_label(name),
+            "page_id": student_ids[0],
+            "blocks": fetch_children(student_ids[0], token),
+        }
     return grouped
 
 
-def phase_content(number: str, phase: str, materials: list[dict], token: str) -> str:
+def phase_content(number: str, phase: str, material: dict, token: str) -> str:
     lines = frontmatter(
-        f"第{int(number)}回｜{phase}",
+        f"{material['unit']}｜{phase}",
         "Notionの学生用教材から生成",
     )
-    for material in sorted(materials, key=lambda item: item["name"]):
-        lines.extend(
-            [
-                f"## {material['unit']}",
-                "",
-                f"<!-- notion-page-id: {material['page_id']} -->",
-                "",
-            ]
-        )
+    lines.extend(
+        [
+            f"## {material['unit']}",
+            "",
+            f"<!-- notion-page-id: {material['page_id']} -->",
+            "",
+        ]
+    )
+    lines.extend(blocks_to_markdown(material["blocks"], token, material["unit"]))
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def full_content(unit: dict, token: str) -> str:
+    phases = unit["phases"]
+    lines = frontmatter(f"{unit['label']}｜全体版", "基礎理解・臨床判断・統合・定着")
+    for phase in PHASE_ORDER:
+        material = phases.get(phase)
+        if not material:
+            continue
+        lines.extend([f"## {phase}", ""])
         lines.extend(blocks_to_markdown(material["blocks"], token, material["unit"]))
     return "\n".join(lines).rstrip() + "\n"
 
 
-def full_content(number: str, phases: dict[str, list[dict]], token: str) -> str:
-    lines = frontmatter(f"第{int(number)}回｜全体版", "基礎理解・臨床判断・統合・定着")
-    for phase in PHASE_ORDER:
-        materials = phases.get(phase, [])
-        if not materials:
-            continue
-        lines.extend([f"## {phase}", ""])
-        for material in sorted(materials, key=lambda item: item["name"]):
-            lines.extend([f"## {material['unit']}", ""])
-            lines.extend(blocks_to_markdown(material["blocks"], token, material["unit"]))
-    return "\n".join(lines).rstrip() + "\n"
-
-
-def landing_content(grouped: dict[str, dict[str, list[dict]]]) -> str:
+def landing_content(grouped: dict[str, dict[str, dict]]) -> str:
     rows: list[str] = []
     for number in sorted(grouped):
-        phases = grouped[number]
-        units = sorted({item["unit"] for items in phases.values() for item in items})
-        unit_summary = "／".join(units)
-        links = []
-        for phase, css_class in (("基礎理解", "pre"), ("臨床判断", "classroom"), ("統合・定着", "review")):
-            filename = PHASE_FILES[phase].replace(".qmd", ".html")
-            if phases.get(phase):
-                links.append(f'<a class="phase-cell {css_class}" href="{number}/{filename}">{phase}</a>')
-            else:
-                links.append(f'<span class="phase-cell {css_class} disabled">未公開</span>')
+        units = grouped[number]
+        overview = units.get(number)
+        group_label = overview["label"] if overview else f"第{int(number)}回"
         rows.append(
-            '<section class="lecture-row">'
-            f'<div class="lecture-info"><strong>第{int(number)}回</strong><span>{html.escape(unit_summary)}</span></div>'
-            + "".join(links)
-            + f'<a class="phase-cell full" href="{number}/full.html">全体版を開く</a>'
-            + "</section>"
+            '<div class="lecture-group-title">'
+            f'<strong>{html.escape(group_label)}</strong>'
+            '<span>小単元ごとに学習段階を選択</span></div>'
         )
+        for code, unit in sorted(units.items()):
+            phases = unit["phases"]
+            links = []
+            for phase, css_class in (("基礎理解", "pre"), ("臨床判断", "classroom"), ("統合・定着", "review")):
+                filename = PHASE_FILES[phase].replace(".qmd", ".html")
+                if phases.get(phase):
+                    links.append(f'<a class="phase-cell {css_class}" href="{number}/{code}/{filename}">{phase}</a>')
+                else:
+                    links.append(f'<span class="phase-cell {css_class} disabled">未公開</span>')
+            rows.append(
+                '<section class="lecture-row unit-row">'
+                f'<div class="lecture-info"><strong>{html.escape(unit["label"])}</strong><span>Notion学生用教材</span></div>'
+                + "".join(links)
+                + f'<a class="phase-cell full" href="{number}/{code}/full.html">全体版を開く</a>'
+                + '<div class="drug-class-cell"><span class="coming-soon">Notion連動</span></div>'
+                + "</section>"
+            )
     return "\n".join(
         [
             "---",
@@ -311,30 +324,29 @@ def landing_content(grouped: dict[str, dict[str, list[dict]]]) -> str:
     )
 
 
-def write_site(grouped: dict[str, dict[str, list[dict]]], token: str) -> None:
+def write_site(grouped: dict[str, dict[str, dict]], token: str) -> None:
     if not grouped:
         raise RuntimeError("公開対象のNotion学生用教材が見つかりません。")
     OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
-    for number, phases in grouped.items():
-        lecture_dir = OUTPUT_ROOT / number
-        lecture_dir.mkdir(parents=True, exist_ok=True)
-        for phase in PHASE_ORDER:
-            materials = phases.get(phase, [])
-            if materials:
-                (lecture_dir / PHASE_FILES[phase]).write_text(
-                    phase_content(number, phase, materials, token), encoding="utf-8"
-                )
-        (lecture_dir / "full.qmd").write_text(
-            full_content(number, phases, token), encoding="utf-8"
-        )
+    for number, units in grouped.items():
+        for code, unit in units.items():
+            unit_dir = OUTPUT_ROOT / number / code
+            unit_dir.mkdir(parents=True, exist_ok=True)
+            for phase in PHASE_ORDER:
+                material = unit["phases"].get(phase)
+                if material:
+                    (unit_dir / PHASE_FILES[phase]).write_text(
+                        phase_content(number, phase, material, token), encoding="utf-8"
+                    )
+            (unit_dir / "full.qmd").write_text(full_content(unit, token), encoding="utf-8")
     (OUTPUT_ROOT / "index.qmd").write_text(landing_content(grouped), encoding="utf-8")
     manifest = {
         "source": "Notion student materials",
         "lectures": {
             number: {
-                phase: len(items) for phase, items in phases.items() if items
+                code: sorted(unit["phases"]) for code, unit in sorted(units.items())
             }
-            for number, phases in sorted(grouped.items())
+            for number, units in sorted(grouped.items())
         },
     }
     (OUTPUT_ROOT / "manifest.json").write_text(
@@ -351,7 +363,7 @@ def main() -> int:
     write_site(grouped, token)
     print(
         "Notion all-lecture sync complete: "
-        + ", ".join(f"{number}={sum(map(len, phases.values()))}" for number, phases in sorted(grouped.items()))
+        + ", ".join(f"{number}={len(units)} units" for number, units in sorted(grouped.items()))
     )
     return 0
 

@@ -23,7 +23,7 @@ project:
     - lectures/04-cardiovascular-ii/reflection.qmd
     - lectures/11-neurology/parkinson-mindmap.qmd
     - lectures/notion/index.qmd
-    - lectures/notion/*/*.qmd
+    - lectures/notion/*/*/*.qmd
 
 lang: ja
 
