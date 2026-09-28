@@ -129,5 +129,7 @@ format:
 
 [パーキンソン病マインドマップ](lectures/11-neurology/parkinson-mindmap.html){.lecture-button}
 
+[開閉できるマインドマップ](lectures/11-neurology/interactive-mindmap.html){.lecture-button}
+
 [YakuriLab 辞書・Simulator](https://yakuri-lab.vercel.app/dictionary/){.lecture-button .secondary}
 :::

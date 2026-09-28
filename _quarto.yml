@@ -1,6 +1,8 @@
 project:
   type: default
   output-dir: _site
+  resources:
+    - lectures/11-neurology/interactive-mindmap.html
   render:
     - index.qmd
     - lectures/01-drug-action/01.qmd
