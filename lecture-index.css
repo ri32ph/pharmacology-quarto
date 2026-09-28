@@ -17,6 +17,13 @@ main.content { max-width: 1420px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
 .course-intro h2 { color: var(--course-navy); border-bottom: 3px solid var(--course-blue); padding-bottom: .65rem; }
 .course-intro p { font-size: 1.08rem; }
 
+.course-menu { display: flex; flex-wrap: wrap; gap: .65rem; margin: 1.5rem 0 2rem; }
+.course-menu-link { display: inline-flex; align-items: center; justify-content: center; min-height: 2.8rem; padding: .65rem 1.05rem; border: 1px solid var(--course-border); border-radius: 999px; color: var(--course-navy) !important; background: #fff; font-weight: 700; line-height: 1.2; text-decoration: none; box-shadow: 0 2px 8px rgba(23, 54, 93, .06); }
+.course-menu-link:hover { border-color: var(--course-blue); background: var(--course-pale-blue); }
+.course-menu-link.active { color: #fff !important; border-color: var(--course-navy); background: var(--course-navy); }
+.course-menu-link.mindmap::before { margin-right: .42rem; content: "◇"; color: var(--course-blue); font-size: 1.05rem; }
+.course-menu-link.dictionary::before { margin-right: .42rem; content: "▤"; color: #7651a8; font-size: 1rem; }
+
 .course-table { margin-top: 2rem; overflow: hidden; background: #fff; border: 1px solid var(--course-border); border-radius: .55rem; box-shadow: 0 4px 18px rgba(23, 54, 93, .08); }
 .grid-header, .lecture-row { display: grid; grid-template-columns: minmax(280px, 2.2fr) repeat(4, minmax(100px, .8fr)) minmax(230px, 1.7fr); align-items: stretch; }
 .grid-header { color: #fff; background: var(--course-navy); font-size: .9rem; font-weight: 700; text-align: center; }
@@ -52,6 +59,8 @@ main.content { max-width: 1420px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
   .course-table { overflow: visible; border: 0; background: transparent; box-shadow: none; }
   .course-intro h2 { font-size: 1.35rem; line-height: 1.45; white-space: normal; overflow-wrap: anywhere; }
   .course-intro p { overflow-wrap: anywhere; }
+  .course-menu { display: grid; grid-template-columns: 1fr; gap: .55rem; margin: 1.1rem 0 1.5rem; }
+  .course-menu-link { width: 100%; box-sizing: border-box; border-radius: .4rem; }
   .grid-header { display: none; }
   .lecture-row { display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; box-sizing: border-box; gap: .55rem; margin-bottom: 1rem; padding: 1rem; background: #fff; border: 1px solid var(--course-border); border-top: 5px solid var(--course-blue); border-radius: .45rem; box-shadow: 0 3px 12px rgba(23, 54, 93, .07); }
   .lecture-info, .unit-row .lecture-info { padding: 0 0 .35rem; }

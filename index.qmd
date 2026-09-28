@@ -15,7 +15,12 @@ format:
 :::
 
 ```{=html}
-<div class="course-table">
+<nav class="course-menu" aria-label="教材メニュー">
+  <a class="course-menu-link active" href="#lecture-list">講義一覧</a>
+  <a class="course-menu-link mindmap" href="lectures/11-neurology/interactive-mindmap.html">マインドマップ</a>
+  <a class="course-menu-link dictionary" href="https://yakuri-lab.vercel.app/dictionary/" target="_blank" rel="noopener">薬理学辞書</a>
+</nav>
+<div id="lecture-list" class="course-table">
   <div class="grid-header" aria-hidden="true">
     <span>講義・小単元</span>
     <span>基礎理解</span>
