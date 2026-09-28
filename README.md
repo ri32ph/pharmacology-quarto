@@ -51,4 +51,4 @@ python3 scripts/sync-notion-all-lectures.py
 quarto render
 ```
 
-公開入口は`lectures/notion/index.html`です。Notion側で非公開の教材は掲載されません。
+公開入口は`lectures/notion/index.html`です。Vercelでは`--activate-index`を付け、通常のトップページもNotion生成版へ差し替えます。Notion取得に失敗した場合は、Gitに保存された手動トップページを使用します。Notion側で非公開の教材は掲載されません。

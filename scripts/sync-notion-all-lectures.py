@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import html
 import json
 import os
@@ -266,7 +267,13 @@ def full_content(unit: dict, token: str) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def landing_content(grouped: dict[str, dict[str, dict]]) -> str:
+def landing_content(
+    grouped: dict[str, dict[str, dict]],
+    *,
+    link_prefix: str = "",
+    css_path: str = "../../lecture-index.css",
+    root_page: bool = False,
+) -> str:
     rows: list[str] = []
     for number in sorted(grouped):
         units = grouped[number]
@@ -283,26 +290,26 @@ def landing_content(grouped: dict[str, dict[str, dict]]) -> str:
             for phase, css_class in (("基礎理解", "pre"), ("臨床判断", "classroom"), ("統合・定着", "review")):
                 filename = PHASE_FILES[phase].replace(".qmd", ".html")
                 if phases.get(phase):
-                    links.append(f'<a class="phase-cell {css_class}" href="{number}/{code}/{filename}">{phase}</a>')
+                    links.append(f'<a class="phase-cell {css_class}" href="{link_prefix}{number}/{code}/{filename}">{phase}</a>')
                 else:
                     links.append(f'<span class="phase-cell {css_class} disabled">未公開</span>')
             rows.append(
                 '<section class="lecture-row unit-row">'
                 f'<div class="lecture-info"><strong>{html.escape(unit["label"])}</strong><span>Notion学生用教材</span></div>'
                 + "".join(links)
-                + f'<a class="phase-cell full" href="{number}/{code}/full.html">全体版を開く</a>'
+                + f'<a class="phase-cell full" href="{link_prefix}{number}/{code}/full.html">全体版を開く</a>'
                 + '<div class="drug-class-cell"><span class="coming-soon">Notion連動</span></div>'
                 + "</section>"
             )
-    return "\n".join(
-        [
+    content = [
             "---",
-            'title: "看護薬理学｜Notion連動講義"',
+            'title: "看護薬理学"' if root_page else 'title: "看護薬理学｜Notion連動講義"',
+            'subtitle: "講義資料"' if root_page else "",
             "format:",
             "  html:",
             "    toc: false",
             "    page-layout: full",
-            "    css: ../../lecture-index.css",
+            f"    css: {css_path}",
             "---",
             "",
             "::: {.course-intro}",
@@ -318,13 +325,28 @@ def landing_content(grouped: dict[str, dict[str, dict]]) -> str:
             "</div>",
             "```",
             "",
-            "[講義サイトへ戻る](../../index.html)",
-            "",
         ]
-    )
+    if root_page:
+        content.extend(
+            [
+                "::: {.related-site}",
+                "### 関連教材",
+                "",
+                "[開閉できるマインドマップ](lectures/11-neurology/interactive-mindmap.html){.lecture-button}",
+                "",
+                "[YakuriLab 辞書・Simulator](https://yakuri-lab.vercel.app/dictionary/){.lecture-button .secondary}",
+                ":::",
+                "",
+            ]
+        )
+    else:
+        content.extend(["[講義サイトへ戻る](../../index.html)", ""])
+    return "\n".join(content)
 
 
-def write_site(grouped: dict[str, dict[str, dict]], token: str) -> None:
+def write_site(
+    grouped: dict[str, dict[str, dict]], token: str, activate_index: bool = False
+) -> None:
     if not grouped:
         raise RuntimeError("公開対象のNotion学生用教材が見つかりません。")
     OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
@@ -340,6 +362,16 @@ def write_site(grouped: dict[str, dict[str, dict]], token: str) -> None:
                     )
             (unit_dir / "full.qmd").write_text(full_content(unit, token), encoding="utf-8")
     (OUTPUT_ROOT / "index.qmd").write_text(landing_content(grouped), encoding="utf-8")
+    if activate_index:
+        (ROOT / "index.qmd").write_text(
+            landing_content(
+                grouped,
+                link_prefix="lectures/notion/",
+                css_path="lecture-index.css",
+                root_page=True,
+            ),
+            encoding="utf-8",
+        )
     manifest = {
         "source": "Notion student materials",
         "lectures": {
@@ -355,12 +387,19 @@ def write_site(grouped: dict[str, dict[str, dict]], token: str) -> None:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--activate-index",
+        action="store_true",
+        help="replace the homepage for this build; the committed manual page remains the fallback",
+    )
+    args = parser.parse_args()
     token = os.environ.get("NOTION_TOKEN") or os.environ.get("NOTION_API_KEY")
     if not token:
         print("NOTION_TOKEN (or NOTION_API_KEY) is required", file=sys.stderr)
         return 2
     grouped = load_published_materials(token)
-    write_site(grouped, token)
+    write_site(grouped, token, activate_index=args.activate_index)
     print(
         "Notion all-lecture sync complete: "
         + ", ".join(f"{number}={len(units)} units" for number, units in sorted(grouped.items()))
