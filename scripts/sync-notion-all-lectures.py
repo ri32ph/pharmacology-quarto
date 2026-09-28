@@ -234,23 +234,12 @@ def property_text(prop: dict | None) -> str:
 
 
 def page_unit_code(page: dict) -> str | None:
-    for prop in (page.get("properties") or {}).values():
-        code = unit_code(property_text(prop))
-        if code and "-" in code:
-            return code
-    return None
-
-
-def page_title(page: dict) -> str:
+    """Read a small-unit code only from the related page title."""
     for prop in (page.get("properties") or {}).values():
         if prop.get("type") == "title":
-            return property_text(prop)
-    return ""
-
-
-def normalized_label(value: str) -> str:
-    value = re.sub(r"^\d{2}(?:-\d{2})?\s*", "", value)
-    return re.sub(r"[\s・／/（）()]+", "", value).replace("と", "")
+            code = unit_code(property_text(prop))
+            return code if code and "-" in code else None
+    return None
 
 
 def load_drug_classes(token: str) -> list[dict]:
@@ -264,20 +253,22 @@ def load_drug_classes(token: str) -> list[dict]:
         slug = plain_text(props.get("Slug", {}).get("rich_text"))
         if not name or not slug:
             continue
-        areas = []
+        area_codes = []
         for page_id in relation_ids(props.get("学習領域")):
             if page_id not in related_page_cache:
                 related_page_cache[page_id] = request_json(
                     f"https://api.notion.com/v1/pages/{page_id}", token
                 )
             page = related_page_cache[page_id]
-            areas.append(
-                {
-                    "code": page_unit_code(page),
-                    "title": page_title(page),
-                }
-            )
-        classes.append({"name": name, "slug": slug, "areas": areas})
+            code = page_unit_code(page)
+            if code:
+                area_codes.append(code)
+            else:
+                print(
+                    f"skip drug-class relation without an exact small-unit code: {name} -> {page_id}",
+                    file=sys.stderr,
+                )
+        classes.append({"name": name, "slug": slug, "area_codes": area_codes})
     return classes
 
 
@@ -285,21 +276,8 @@ def attach_drug_classes(grouped: dict[str, dict[str, dict]], classes: list[dict]
     for units in grouped.values():
         for code, unit in units.items():
             matches = []
-            unit_label_normalized = normalized_label(unit["label"])
             for drug_class in classes:
-                related = any(
-                    area["code"] == code
-                    or (
-                        area["title"]
-                        and (
-                            normalized_label(area["title"]) == unit_label_normalized
-                            or normalized_label(area["title"]) in unit_label_normalized
-                            or unit_label_normalized in normalized_label(area["title"])
-                        )
-                    )
-                    for area in drug_class["areas"]
-                )
-                if related:
+                if code in drug_class["area_codes"]:
                     matches.append({"name": drug_class["name"], "slug": drug_class["slug"]})
             unit["drug_classes"] = matches
 
