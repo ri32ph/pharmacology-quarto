@@ -127,6 +127,8 @@ format:
 ::: {.related-site}
 ### 関連教材
 
+[Notion連動｜15回の講義資料](lectures/notion/index.html){.lecture-button}
+
 [パーキンソン病マインドマップ](lectures/11-neurology/parkinson-mindmap.html){.lecture-button}
 
 [開閉できるマインドマップ](lectures/11-neurology/interactive-mindmap.html){.lecture-button}

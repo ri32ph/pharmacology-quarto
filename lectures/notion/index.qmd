@@ -1,0 +1,16 @@
+---
+title: "看護薬理学｜Notion連動講義"
+format:
+  html:
+    toc: false
+    page-layout: full
+    css: ../../lecture-index.css
+---
+
+::: {.course-intro}
+## 15回の講義資料
+
+Notionからの同期準備中です。同期に成功すると、公開対象の講義がここに表示されます。
+:::
+
+[講義サイトへ戻る](../../index.html)

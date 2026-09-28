@@ -40,3 +40,15 @@ quarto render
 ```
 
 生成先は`lectures/11-neurology/interactive-mindmap.html`です。Vercelではデプロイ時に自動生成し、Notion APIエラー時はGitに保存されたHTMLを使用します。
+
+## 学生用教材DB → 15回の講義ポータル
+
+`学習資材`からRelationされた学生用教材のうち、`公開状態`が`公開可`または`配布可`の教材を全15回分取得します。各回に`基礎理解`、`臨床判断`、`統合・定着`、`全体版`を生成します。
+
+```bash
+export NOTION_TOKEN='secret_...'
+python3 scripts/sync-notion-all-lectures.py
+quarto render
+```
+
+公開入口は`lectures/notion/index.html`です。Notion側で非公開の教材は掲載されません。

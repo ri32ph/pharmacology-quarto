@@ -16,6 +16,12 @@ else
   echo "Mind map sync failed; using the committed interactive fallback." >&2
 fi
 
+if python3 scripts/sync-notion-all-lectures.py; then
+  echo "Using the Notion-generated 15-lecture portal."
+else
+  echo "All-lecture sync failed; using the committed portal fallback." >&2
+fi
+
 if command -v quarto >/dev/null 2>&1; then
   quarto_bin=$(command -v quarto)
 else
